@@ -1,14 +1,19 @@
 import { createMuiTheme } from '@material-ui/core/styles';
-import purple from '@material-ui/core/colors/purple';
-import green from '@material-ui/core/colors/green';
+
+const customBlue= '#0b72b9';
+const customOrange= '#ffba60';
 
 export default createMuiTheme({
   palette: {
+      common: {
+          arcBlue: customBlue,
+          arcOrange: customOrange
+      },
     primary: {
-      main: purple[500],
+      main: customBlue,
     },
     secondary: {
-      main: green[500],
+      main: customOrange,
     },
   },
 });
