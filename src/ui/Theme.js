@@ -16,4 +16,9 @@ export default createMuiTheme({
       main: customOrange,
     },
   },
+  typography: {
+      h4: {
+          fontWeight: '600'
+      }
+  }
 });
