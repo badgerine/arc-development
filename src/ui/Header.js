@@ -25,14 +25,10 @@ const useStyles = makeStyles(theme => ({
         margingLeft: '25px'
     },
     button: {
+        ...theme.typography.estimate,
         borderRadius: '50px',
         marginLeft: '50px',
-        marginRight: '25px',
-        fontFamily: 'Pacifico',
-        fontSize: '1rem',
-        textTransform: 'none',
         height: '45px',
-        color: 'white'
     }
 }));
 
