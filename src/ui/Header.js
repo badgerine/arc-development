@@ -131,7 +131,7 @@ export default function Header(props) {
                         <Button variant="contained" color='secondary' className={classes.button}>
                             Free Estimate
                         </Button>
-                        <Menu id='simple-menu' anchorEl={anchorEl} open={open} onClose={handleCloseMenu}>
+                        <Menu id='simple-menu' anchorEl={anchorEl} open={open} onClose={handleCloseMenu} MenuListProps={{ onMouseLeave: handleCloseMenu }}>
                             <MenuItem onClick={handleCloseMenu}>Custom Software Development</MenuItem>
                             <MenuItem onClick={handleCloseMenu}>Mobile App Development</MenuItem>
                             <MenuItem onClick={handleCloseMenu}>Website Development</MenuItem>
