@@ -6,6 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Tab, Tabs } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
+import { Menu, MenuItem } from '@material-ui/core';
 
 import logo from '../assets/logo.svg';
 
@@ -55,6 +56,8 @@ function ElevationScroll(props) {
 export default function Header(props) {
     const classes = useStyles();
     const [value, setValue] = useState(0);
+    const [anchorEl, setAnchorEl] = useState(null);
+    const [open, setOpen] = useState(false);
 
     useEffect(() => {
         if (window.location.pathname === '/' && value !== 0) {
@@ -76,6 +79,16 @@ export default function Header(props) {
         setValue(value);
     }
 
+    const handleClickMenu = (e) => {
+        setAnchorEl(e.currentTarget);
+        setOpen(true);
+    }
+
+    const handleCloseMenu = (e) => {
+        setAnchorEl(null);
+        setOpen(false);
+    }
+
     return (
         <React.Fragment>
             <ElevationScroll>
@@ -86,15 +99,43 @@ export default function Header(props) {
                         </Button>
 
                         <Tabs value={value} onChange={handleChange} className={classes.tabContainer} indicatorColor='primary'>
-                            <Tab className={classes.tab} component={Link} to='/' label="Home" />
-                            <Tab className={classes.tab} component={Link} to='/services' label="Services" />
-                            <Tab className={classes.tab} component={Link} to='/revolution' label="The Revolution" />
-                            <Tab className={classes.tab} component={Link} to='/about' label="About Us" />
-                            <Tab className={classes.tab} component={Link} to='/contact' label="Contact Us" />
+                            <Tab
+                                className={classes.tab}
+                                component={Link}
+                                to='/'
+                                label="Home" />
+                            <Tab
+                                aria-owns={anchorEl ? 'simple-menu' : undefined}
+                                aria-haspopup={anchorEl ? 'true' : undefined}
+                                className={classes.tab}
+                                component={Link}
+                                onMouseOver={event => handleClickMenu(event)}
+                                to='/services'
+                                label="Services" />
+                            <Tab
+                                className={classes.tab}
+                                component={Link}
+                                to='/revolution'
+                                label="The Revolution" />
+                            <Tab
+                                className={classes.tab}
+                                component={Link}
+                                to='/about'
+                                label="About Us" />
+                            <Tab
+                                className={classes.tab}
+                                component={Link}
+                                to='/contact'
+                                label="Contact Us" />
                         </Tabs>
                         <Button variant="contained" color='secondary' className={classes.button}>
                             Free Estimate
                         </Button>
+                        <Menu id='simple-menu' anchorEl={anchorEl} open={open} onClose={handleCloseMenu}>
+                            <MenuItem onClick={handleCloseMenu}>Custom Software Development</MenuItem>
+                            <MenuItem onClick={handleCloseMenu}>Mobile App Development</MenuItem>
+                            <MenuItem onClick={handleCloseMenu}>Website Development</MenuItem>
+                        </Menu>
                     </Toolbar>
                 </AppBar>
             </ElevationScroll>
