@@ -73,18 +73,46 @@ export default function Header(props) {
     const [selectedIndex, setSelectedIndex] = useState(0);
 
     useEffect(() => {
-        if (window.location.pathname === '/' && value !== 0) {
-            setValue(0);
-        } else if (window.location.pathname === '/services' && value !== 1) {
-            setValue(1);
-        } else if (window.location.pathname === '/revolution' && value !== 2) {
-            setValue(2);
-        } else if (window.location.pathname === '/about' && value !== 3) {
-            setValue(3);
-        } else if (window.location.pathname === '/contact' && value !== 4) {
-            setValue(4);
-        } else if (window.location.pathname === '/estimate' && value !== 5) {
-            setValue(5);
+        let servicesIndex = 0;
+        switch (window.location.pathname) {
+            case '/':
+                if (value != 0) {
+                    setValue(0);
+                }
+                break;
+            case '/services':
+            case '/customsoftware':
+                 servicesIndex = 1;
+            case '/mobileapps':
+                servicesIndex = 2;
+            case '/websites':
+                servicesIndex = 3;
+                if (value != 1) {
+                    setValue(1);
+                    setSelectedIndex(servicesIndex);
+                }
+                break;
+            case '/revolution':
+                if (value != 2) {
+                    setValue(2);
+                }
+                break;
+            case '/about':
+                if (value != 3) {
+                    setValue(3);
+                }
+                break;
+            case '/contact':
+                if (value != 4) {
+                    setValue(4);
+                }
+                break;
+            case '/estimate':
+                if (value != 5) {
+                    setValue(5);
+                }
+                break;
+            default: break;
         }
     }, [value])
 
@@ -178,11 +206,6 @@ export default function Header(props) {
                                     component={Link}
                                     to={item.link} >{item.name}</MenuItem>
                             ))}
-
-                            {/* <MenuItem classes={{ root: classes.menuItem }} onClick={() => { handleCloseMenu(); setValue(1) }} component={Link} to='/services' >Services</MenuItem>
-                            <MenuItem classes={{ root: classes.menuItem }} onClick={() => { handleCloseMenu(); setValue(1) }} component={Link} to='/customsoftware' >Custom Software Development</MenuItem>
-                            <MenuItem classes={{ root: classes.menuItem }} onClick={() => { handleCloseMenu(); setValue(1) }} component={Link} to='/mobileapps' >Mobile App Development</MenuItem>
-                            <MenuItem classes={{ root: classes.menuItem }} onClick={() => { handleCloseMenu(); setValue(1) }} component={Link} to='/websites' >Website Development</MenuItem> */}
                         </Menu>
                     </Toolbar>
                 </AppBar>
