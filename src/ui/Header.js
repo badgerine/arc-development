@@ -107,7 +107,7 @@ export default function Header(props) {
         let servicesIndex = 0;
         switch (window.location.pathname) {
             case '/':
-                if (value != 0) {
+                if (value !== 0) {
                     setValue(0);
                 }
                 break;
@@ -118,28 +118,28 @@ export default function Header(props) {
                 servicesIndex = 2;
             case '/websites':
                 servicesIndex = 3;
-                if (value != 1) {
+                if (value !== 1) {
                     setValue(1);
                     setSelectedIndex(servicesIndex);
                 }
                 break;
             case '/revolution':
-                if (value != 2) {
+                if (value !== 2) {
                     setValue(2);
                 }
                 break;
             case '/about':
-                if (value != 3) {
+                if (value !== 3) {
                     setValue(3);
                 }
                 break;
             case '/contact':
-                if (value != 4) {
+                if (value !== 4) {
                     setValue(4);
                 }
                 break;
             case '/estimate':
-                if (value != 5) {
+                if (value !== 5) {
                     setValue(5);
                 }
                 break;
