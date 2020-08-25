@@ -78,7 +78,8 @@ const useStyles = makeStyles(theme => ({
     },
     drawerItem: {
         ...theme.typography.tab,
-        color: 'white'
+        color: 'white',
+        opacity: 0.7,
     },
     drawerItemEstimate: {
         backgroundColor: theme.palette.common.arcOrange
@@ -86,6 +87,9 @@ const useStyles = makeStyles(theme => ({
     drawerIcon: {
         height: '50px',
         width: '50px',
+    },
+    drawerItemSelected: {
+        opacity: 1
     }
 }));
 
@@ -179,6 +183,15 @@ export default function Header(props) {
     }
 
     const menuOptions = [
+        { name: 'Home', link: '/', selectValue: 0 },
+        { name: 'Services', link: '/services', selectValue: 1 },
+        { name: 'The Revolution', link: '/revolution', selectValue: 2 },
+        { name: 'About Us', link: '/about', selectValue: 3 },
+        { name: 'Contact Us', link: '/contact', selectValue: 4 },
+        // { name: 'Free Estimate', link: '/estimate', selectValue: 5, specificClass: classes.drawerItemEstimate}
+    ];
+
+    const serviceMenuOptions = [
         { name: 'Services', link: '/services' },
         { name: 'Custom Software Development', link: '/customsoftware' },
         { name: 'Mobile App Development', link: '/mobileapps' },
@@ -218,7 +231,7 @@ export default function Header(props) {
             </Tabs>
             <Button variant="contained" color='secondary' className={classes.button}>
                 Free Estimate
-                        </Button>
+            </Button>
             <Menu
                 id='simple-menu'
                 anchorEl={anchorEl}
@@ -228,7 +241,7 @@ export default function Header(props) {
                 elevation={0}
                 MenuListProps={{ onMouseLeave: handleCloseMenu }}>
 
-                {menuOptions.map((item, index) => (
+                {serviceMenuOptions.map((item, index) => (
                     <MenuItem
                         key={index}
                         classes={{ root: classes.menuItem }}
@@ -245,27 +258,25 @@ export default function Header(props) {
         </React.Fragment>
     );
 
+    const drawerItems = menuOptions.map(option => (
+        <ListItem onClick={() => { setOpenDrawer(false); setValue(option.selectValue) }}
+            divider button component={Link}
+            to={option.link} selected={value === option.selectValue}
+        >
+            <ListItemText
+                className={value === option.selectValue ? [classes.drawerItem, classes.drawerItemSelected] : classes.drawerItem}
+                disableTypography >{option.name}</ListItemText>
+        </ListItem>));
+
     const drawer = (
         <React.Fragment>
-            <SwipeableDrawer disableBackdropTransition={!iOS} disableDiscovery={iOS} classes={{paper: classes.drawer}}
+            <SwipeableDrawer disableBackdropTransition={!iOS} disableDiscovery={iOS} classes={{ paper: classes.drawer }}
                 open={openDrawer} onClose={() => setOpenDrawer(false)} onOpen={() => setOpenDrawer(true)}>
                 <List disablePadding>
-                    <ListItem onClick={()=> setOpenDrawer(false)} divider button component={Link} to='/'>
-                        <ListItemText className={classes.drawerItem} disableTypography >Home</ListItemText>
-                    </ListItem>
-                    <ListItem onClick={()=> setOpenDrawer(false)} divider button component={Link} to='/services'>
-                        <ListItemText className={classes.drawerItem} disableTypography >Services</ListItemText>
-                    </ListItem>
-                    <ListItem onClick={()=> setOpenDrawer(false)} divider button component={Link} to='/revolution'>
-                        <ListItemText className={classes.drawerItem} disableTypography >The Revolution</ListItemText>
-                    </ListItem>
-                    <ListItem onClick={()=> setOpenDrawer(false)} divider button component={Link} to='/about'>
-                        <ListItemText className={classes.drawerItem} disableTypography >About Us</ListItemText>
-                    </ListItem>
-                    <ListItem onClick={()=> setOpenDrawer(false)} divider button component={Link} to='/contact'>
-                        <ListItemText className={classes.drawerItem} disableTypography >Contact Us</ListItemText>
-                    </ListItem>
-                    <ListItem onClick={()=> setOpenDrawer(false)} className={classes.drawerItemEstimate} divider button component={Link} to='/estimate'>
+                    {drawerItems}
+                    <ListItem onClick={() => { setOpenDrawer(false); setValue(5) }} 
+                        className={value === 5 ? [classes.drawerItem, classes.drawerItemSelected] : classes.drawerItem}
+                        divider button component={Link} to='/estimate' selected={value === 5}>
                         <ListItemText className={classes.drawerItem} disableTypography >Free Estimate</ListItemText>
                     </ListItem>
                 </List>
