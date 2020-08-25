@@ -188,7 +188,7 @@ export default function Header(props) {
         { name: 'The Revolution', link: '/revolution', selectValue: 2 },
         { name: 'About Us', link: '/about', selectValue: 3 },
         { name: 'Contact Us', link: '/contact', selectValue: 4 },
-        // { name: 'Free Estimate', link: '/estimate', selectValue: 5, specificClass: classes.drawerItemEstimate}
+        { name: 'Free Estimate', link: '/estimate', selectValue: 5, specificClass: classes.drawerItemEstimate},
     ];
 
     const serviceMenuOptions = [
@@ -262,6 +262,7 @@ export default function Header(props) {
         <ListItem onClick={() => { setOpenDrawer(false); setValue(option.selectValue) }}
             divider button component={Link}
             to={option.link} selected={value === option.selectValue}
+            className={option.specificClass}
         >
             <ListItemText
                 className={value === option.selectValue ? [classes.drawerItem, classes.drawerItemSelected] : classes.drawerItem}
@@ -274,11 +275,6 @@ export default function Header(props) {
                 open={openDrawer} onClose={() => setOpenDrawer(false)} onOpen={() => setOpenDrawer(true)}>
                 <List disablePadding>
                     {drawerItems}
-                    <ListItem onClick={() => { setOpenDrawer(false); setValue(5) }} 
-                        className={value === 5 ? [classes.drawerItem, classes.drawerItemSelected] : classes.drawerItem}
-                        divider button component={Link} to='/estimate' selected={value === 5}>
-                        <ListItemText className={classes.drawerItem} disableTypography >Free Estimate</ListItemText>
-                    </ListItem>
                 </List>
             </SwipeableDrawer>
             <IconButton className={classes.drawerIconContainer} onClick={() => setOpenDrawer(!openDrawer)} disableRipple>
