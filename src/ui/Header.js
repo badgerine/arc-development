@@ -89,7 +89,13 @@ const useStyles = makeStyles(theme => ({
         width: '50px',
     },
     drawerItemSelected: {
-        opacity: 1
+        '& .MuiListItemText-root': {
+            opacity: 1
+        }
+        // opacity: 1
+    },
+    appBar: {
+        zIndex: theme.zIndex.modal + 1
     }
 }));
 
@@ -173,7 +179,7 @@ export default function Header(props) {
         <React.Fragment>
             <Tabs value={value} onChange={handleChange} className={classes.tabContainer} indicatorColor='primary'>
                 {routes.map((route, index) => (
-                    <Tab key={route+index} className={classes.tab} component={Link} to={route.link} label={route.name}
+                    <Tab key={route + index} className={classes.tab} component={Link} to={route.link} label={route.name}
                         aria-owns={route.ariaOwns} aria-haspopup={route.ariaPopup} onMouseOver={route.mouseOver} />
                 ))}
             </Tabs>
@@ -189,6 +195,7 @@ export default function Header(props) {
                 elevation={0}
                 MenuListProps={{ onMouseLeave: handleCloseMenu }}
                 keepMounted
+                style={{ zIndex: 1302 }}
             >
 
                 {serviceMenuOptions.map((item, index) => (
@@ -212,10 +219,10 @@ export default function Header(props) {
         <ListItem key={option.name} onClick={() => { setOpenDrawer(false); setValue(option.activeValue) }}
             divider button component={Link}
             to={option.link} selected={value === option.activeValue}
-            className={option.specificClass}
+            className={option.specificClass} classes={{ selected: classes.drawerItemSelected }}
         >
             <ListItemText
-                className={value === option.activeValue ? [classes.drawerItem, classes.drawerItemSelected] : classes.drawerItem}
+                className={classes.drawerItem}
                 disableTypography >{option.name}</ListItemText>
         </ListItem>));
 
@@ -223,6 +230,7 @@ export default function Header(props) {
         <React.Fragment>
             <SwipeableDrawer disableBackdropTransition={!iOS} disableDiscovery={iOS} classes={{ paper: classes.drawer }}
                 open={openDrawer} onClose={() => setOpenDrawer(false)} onOpen={() => setOpenDrawer(true)}>
+                <div className={classes.toolbarMargin} />
                 <List disablePadding>
                     {drawerItems}
                 </List>
@@ -236,7 +244,7 @@ export default function Header(props) {
     return (
         <React.Fragment>
             <ElevationScroll>
-                <AppBar position='fixed' >
+                <AppBar position='fixed' className={classes.appBar}>
                     <Toolbar disableGutters>
                         <Button disableRipple component={Link} to='/' className={classes.logoContainer} onClick={() => setValue(0)}>
                             <img className={classes.logo} alt="company logo" src={logo} />
