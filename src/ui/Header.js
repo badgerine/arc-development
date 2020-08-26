@@ -119,7 +119,12 @@ export default function Header(props) {
     const [selectedIndex, setSelectedIndex] = useState(0);
     const routes = [
         { name: 'Home', link: '/', activeValue: 0 },
-        { name: 'Services', link: '/services', activeValue: 1 },
+        {
+            name: 'Services', link: '/services', activeValue: 1,
+            ariaOwns: anchorEl ? 'simple-menu' : undefined,
+            ariaPopup: anchorEl ? 'true' : undefined,
+            mouseOver: event => handleClickMenu(event)
+        },
         { name: 'The Revolution', link: '/revolution', activeValue: 2 },
         { name: 'About Us', link: '/about', activeValue: 3 },
         { name: 'Contact Us', link: '/contact', activeValue: 4 },
@@ -167,34 +172,10 @@ export default function Header(props) {
     const tabs = (
         <React.Fragment>
             <Tabs value={value} onChange={handleChange} className={classes.tabContainer} indicatorColor='primary'>
-                <Tab
-                    className={classes.tab}
-                    component={Link}
-                    to='/'
-                    label="Home" />
-                <Tab
-                    aria-owns={anchorEl ? 'simple-menu' : undefined}
-                    aria-haspopup={anchorEl ? 'true' : undefined}
-                    className={classes.tab}
-                    component={Link}
-                    onMouseOver={event => handleClickMenu(event)}
-                    to='/services'
-                    label="Services" />
-                <Tab
-                    className={classes.tab}
-                    component={Link}
-                    to='/revolution'
-                    label="The Revolution" />
-                <Tab
-                    className={classes.tab}
-                    component={Link}
-                    to='/about'
-                    label="About Us" />
-                <Tab
-                    className={classes.tab}
-                    component={Link}
-                    to='/contact'
-                    label="Contact Us" />
+                {routes.map((route, index) => (
+                    <Tab key={route+index} className={classes.tab} component={Link} to={route.link} label={route.name}
+                        aria-owns={route.ariaOwns} aria-haspopup={route.ariaPopup} onMouseOver={route.mouseOver} />
+                ))}
             </Tabs>
             <Button variant="contained" color='secondary' className={classes.button}>
                 Free Estimate
@@ -206,7 +187,9 @@ export default function Header(props) {
                 onClose={handleCloseMenu}
                 classes={{ paper: classes.menu }}
                 elevation={0}
-                MenuListProps={{ onMouseLeave: handleCloseMenu }}>
+                MenuListProps={{ onMouseLeave: handleCloseMenu }}
+                keepMounted
+            >
 
                 {serviceMenuOptions.map((item, index) => (
                     <MenuItem
