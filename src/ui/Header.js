@@ -117,50 +117,32 @@ export default function Header(props) {
     const [anchorEl, setAnchorEl] = useState(null);
     const [openMenu, setOpenMenu] = useState(false);
     const [selectedIndex, setSelectedIndex] = useState(0);
+    const routes = [
+        { name: 'Home', link: '/', activeValue: 0 },
+        { name: 'Services', link: '/services', activeValue: 1 },
+        { name: 'The Revolution', link: '/revolution', activeValue: 2 },
+        { name: 'About Us', link: '/about', activeValue: 3 },
+        { name: 'Contact Us', link: '/contact', activeValue: 4 },
+        { name: 'Free Estimate', link: '/estimate', activeValue: 5, specificClass: classes.drawerItemEstimate },
+    ];
+    const serviceMenuOptions = [
+        { name: 'Services', link: '/services', activeValue: 1, activeIndex: 0 },
+        { name: 'Custom Software Development', link: '/customsoftware', activeValue: 1, activeIndex: 1 },
+        { name: 'Mobile App Development', link: '/mobileapps', activeValue: 1, activeIndex: 2 },
+        { name: 'Website Development', link: '/websites', activeValue: 1, activeIndex: 3 }];
 
     useEffect(() => {
-        let servicesIndex = 0;
-        switch (window.location.pathname) {
-            case '/':
-                if (value !== 0) {
-                    setValue(0);
+        [...routes, ...serviceMenuOptions].forEach(route => {
+            if (route.link === window.location.pathname) {
+                if (value !== route.activeValue) {
+                    setValue(route.activeValue);
+                    if (route.activeIndex && route.activeIndex !== selectedIndex) {
+                        setSelectedIndex(route.activeIndex);
+                    }
                 }
-                break;
-            case '/services':
-            case '/customsoftware':
-                servicesIndex = 1;
-            case '/mobileapps':
-                servicesIndex = 2;
-            case '/websites':
-                servicesIndex = 3;
-                if (value !== 1) {
-                    setValue(1);
-                    setSelectedIndex(servicesIndex);
-                }
-                break;
-            case '/revolution':
-                if (value !== 2) {
-                    setValue(2);
-                }
-                break;
-            case '/about':
-                if (value !== 3) {
-                    setValue(3);
-                }
-                break;
-            case '/contact':
-                if (value !== 4) {
-                    setValue(4);
-                }
-                break;
-            case '/estimate':
-                if (value !== 5) {
-                    setValue(5);
-                }
-                break;
-            default: break;
-        }
-    }, [value])
+            }
+        })
+    }, [value, selectedIndex, routes, serviceMenuOptions]);
 
     const handleChange = (e, newValue) => {
         setValue(newValue);
@@ -181,21 +163,6 @@ export default function Header(props) {
         setOpenMenu(false);
         setSelectedIndex(index);
     }
-
-    const menuOptions = [
-        { name: 'Home', link: '/', selectValue: 0 },
-        { name: 'Services', link: '/services', selectValue: 1 },
-        { name: 'The Revolution', link: '/revolution', selectValue: 2 },
-        { name: 'About Us', link: '/about', selectValue: 3 },
-        { name: 'Contact Us', link: '/contact', selectValue: 4 },
-        { name: 'Free Estimate', link: '/estimate', selectValue: 5, specificClass: classes.drawerItemEstimate},
-    ];
-
-    const serviceMenuOptions = [
-        { name: 'Services', link: '/services' },
-        { name: 'Custom Software Development', link: '/customsoftware' },
-        { name: 'Mobile App Development', link: '/mobileapps' },
-        { name: 'Website Development', link: '/websites' }];
 
     const tabs = (
         <React.Fragment>
@@ -258,14 +225,14 @@ export default function Header(props) {
         </React.Fragment>
     );
 
-    const drawerItems = menuOptions.map(option => (
-        <ListItem onClick={() => { setOpenDrawer(false); setValue(option.selectValue) }}
+    const drawerItems = routes.map(option => (
+        <ListItem key={option.name} onClick={() => { setOpenDrawer(false); setValue(option.activeValue) }}
             divider button component={Link}
-            to={option.link} selected={value === option.selectValue}
+            to={option.link} selected={value === option.activeValue}
             className={option.specificClass}
         >
             <ListItemText
-                className={value === option.selectValue ? [classes.drawerItem, classes.drawerItemSelected] : classes.drawerItem}
+                className={value === option.activeValue ? [classes.drawerItem, classes.drawerItemSelected] : classes.drawerItem}
                 disableTypography >{option.name}</ListItemText>
         </ListItem>));
 
