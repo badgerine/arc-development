@@ -45,35 +45,48 @@ export default (props) => {
       <Grid container justify='center' className={classes.mainContainer}>
         <Grid item className={classes.gridItem}>
           <Grid container spacing={2} direction='column'>
-            <Grid item className={classes.link} component={Link} to='/'>Home</Grid>
+            <Grid item className={classes.link} component={Link} to='/'
+            onClick={() => {props.setValue(0)}}>Home</Grid>
           </Grid>
         </Grid>
         <Grid item className={classes.gridItem}>
           <Grid container spacing={2} direction='column'>
-            <Grid item className={classes.link} component={Link} to='/services'>Services</Grid>
-            <Grid item className={classes.link} component={Link} to='/customsoftware'>Custom Software Development</Grid>
-            <Grid item className={classes.link} component={Link} to='/mobileapps'>Mobile App Development</Grid>
-            <Grid item className={classes.link} component={Link} to='/websites'>Website Development</Grid>
+            <Grid item className={classes.link} component={Link} to='/services' 
+            onClick={() => {props.setValue(1); props.setSelectedIndex(0)}} >Services</Grid>
+            <Grid item className={classes.link} component={Link} to='/customsoftware' 
+            onClick={() => {props.setValue(1); props.setSelectedIndex(1)}} >Custom Software Development</Grid>
+            <Grid item className={classes.link} component={Link} to='/mobileapps' 
+            onClick={() => {props.setValue(1); props.setSelectedIndex(2)}} >Mobile App Development</Grid>
+            <Grid item className={classes.link} component={Link} to='/websites' 
+            onClick={() => {props.setValue(1); props.setSelectedIndex(3)}} >Website Development</Grid>
           </Grid>
         </Grid>
         <Grid item className={classes.gridItem}>
           <Grid container spacing={2} direction='column'>
-            <Grid item className={classes.link} component={Link} to='/revolution'>The Revolution</Grid>
-            <Grid item className={classes.link} component={Link} to='/revolution'>Vision</Grid>
-            <Grid item className={classes.link} component={Link} to='/revolution'>Technology</Grid>
-            <Grid item className={classes.link} component={Link} to='/revolution'>Process</Grid>
+            <Grid item className={classes.link} component={Link} to='/revolution' 
+            onClick={() => {props.setValue(2); props.setSelectedIndex(0)}} >The Revolution</Grid>
+            <Grid item className={classes.link} component={Link} to='/revolution' 
+            onClick={() => {props.setValue(2); props.setSelectedIndex(1)}} >Vision</Grid>
+            <Grid item className={classes.link} component={Link} to='/revolution' 
+            onClick={() => {props.setValue(2); props.setSelectedIndex(2)}} >Technology</Grid>
+            <Grid item className={classes.link} component={Link} to='/revolution' 
+            onClick={() => {props.setValue(2); props.setSelectedIndex(3)}} >Process</Grid>
           </Grid>
         </Grid>
         <Grid item className={classes.gridItem}>
           <Grid container spacing={2} direction='column'>
-            <Grid item className={classes.link} component={Link} to='/about'>About Us</Grid>
-            <Grid item className={classes.link} component={Link} to='/about'>History</Grid>
-            <Grid item className={classes.link} component={Link} to='/about'>Team</Grid>
+            <Grid item className={classes.link} component={Link} to='/about' 
+            onClick={() => {props.setValue(3); props.setSelectedIndex()}} >About Us</Grid>
+            <Grid item className={classes.link} component={Link} to='/about' 
+            onClick={() => {props.setValue(3); props.setSelectedIndex()}} >History</Grid>
+            <Grid item className={classes.link} component={Link} to='/about' 
+            onClick={() => {props.setValue(3); props.setSelectedIndex()}} >Team</Grid>
           </Grid>
         </Grid>
         <Grid item className={classes.gridItem}>
           <Grid container spacing={2} direction='column'>
-            <Grid item className={classes.link} component={Link} to='/contact'>Contact Us</Grid>
+            <Grid item className={classes.link} component={Link} to='/contact' 
+            onClick={() => {props.setValue(4); props.setSelectedIndex()}} >Contact Us</Grid>
           </Grid>
         </Grid>
       </Grid>

@@ -119,10 +119,8 @@ export default function Header(props) {
     const matches = useMediaQuery(theme.breakpoints.down("md"));
 
     const [openDrawer, setOpenDrawer] = useState(false);
-    const [value, setValue] = useState(0);
     const [anchorEl, setAnchorEl] = useState(null);
     const [openMenu, setOpenMenu] = useState(false);
-    const [selectedIndex, setSelectedIndex] = useState(0);
     const routes = [
         { name: 'Home', link: '/', activeValue: 0 },
         {
@@ -145,18 +143,18 @@ export default function Header(props) {
     useEffect(() => {
         [...routes, ...serviceMenuOptions].forEach(route => {
             if (route.link === window.location.pathname) {
-                if (value !== route.activeValue) {
-                    setValue(route.activeValue);
-                    if (route.activeIndex && route.activeIndex !== selectedIndex) {
-                        setSelectedIndex(route.activeIndex);
+                if (props.value !== route.activeValue) {
+                    props.setValue(route.activeValue);
+                    if (route.activeIndex && route.activeIndex !== props.selectedIndex) {
+                        props.setSelectedIndex(route.activeIndex);
                     }
                 }
             }
         })
-    }, [value, selectedIndex, routes, serviceMenuOptions]);
+    }, [props.value, props.selectedIndex, routes, serviceMenuOptions]);
 
     const handleChange = (e, newValue) => {
-        setValue(newValue);
+        props.setValue(newValue);
     }
 
     const handleClickMenu = (e) => {
@@ -172,12 +170,12 @@ export default function Header(props) {
     const handleMenuItemClick = (event, index) => {
         setAnchorEl(null);
         setOpenMenu(false);
-        setSelectedIndex(index);
+        props.setSelectedIndex(index);
     }
 
     const tabs = (
         <React.Fragment>
-            <Tabs value={value} onChange={handleChange} className={classes.tabContainer} indicatorColor='primary'>
+            <Tabs value={props.value} onChange={handleChange} className={classes.tabContainer} indicatorColor='primary'>
                 {routes.map((route, index) => (
                     <Tab key={route + index} className={classes.tab} component={Link} to={route.link} label={route.name}
                         aria-owns={route.ariaOwns} aria-haspopup={route.ariaPopup} onMouseOver={route.mouseOver} />
@@ -205,9 +203,9 @@ export default function Header(props) {
                         onClick={(event) => {
                             handleMenuItemClick(event, index);
                             handleCloseMenu();
-                            setValue(1)
+                            props.setValue(1)
                         }}
-                        selected={value === 1 && index === selectedIndex}
+                        selected={props.value === 1 && index === props.selectedIndex}
                         component={Link}
                         to={item.link} >{item.name}</MenuItem>
                 ))}
@@ -216,9 +214,9 @@ export default function Header(props) {
     );
 
     const drawerItems = routes.map(option => (
-        <ListItem key={option.name} onClick={() => { setOpenDrawer(false); setValue(option.activeValue) }}
+        <ListItem key={option.name} onClick={() => { setOpenDrawer(false); props.setValue(option.activeValue) }}
             divider button component={Link}
-            to={option.link} selected={value === option.activeValue}
+            to={option.link} selected={props.value === option.activeValue}
             className={option.specificClass} classes={{ selected: classes.drawerItemSelected }}
         >
             <ListItemText
@@ -246,7 +244,7 @@ export default function Header(props) {
             <ElevationScroll>
                 <AppBar position='fixed' className={classes.appBar}>
                     <Toolbar disableGutters>
-                        <Button disableRipple component={Link} to='/' className={classes.logoContainer} onClick={() => setValue(0)}>
+                        <Button disableRipple component={Link} to='/' className={classes.logoContainer} onClick={() => props.setValue(0)}>
                             <img className={classes.logo} alt="company logo" src={logo} />
                         </Button>
                         {matches ? drawer : tabs}
