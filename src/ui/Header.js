@@ -134,7 +134,7 @@ export default function Header(props) {
         { name: 'The Revolution', link: '/revolution', activeValue: 2 },
         { name: 'About Us', link: '/about', activeValue: 3 },
         { name: 'Contact Us', link: '/contact', activeValue: 4 },
-        { name: 'Free Estimate', link: '/estimate', activeValue: 5, specificClass: classes.drawerItemEstimate },
+        // { name: 'Free Estimate', link: '/estimate', activeValue: 5, specificClass: classes.drawerItemEstimate },
     ];
     const serviceMenuOptions = [
         { name: 'Services', link: '/services', activeValue: 1, activeIndex: 0 },
