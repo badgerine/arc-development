@@ -6,6 +6,7 @@ import Button from '@material-ui/core/Button';
 import ButtonArrow from '../ui/ButtonArrow';
 
 import animationData from '../animations/landinganimation/data';
+import { Typography } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
 
@@ -26,9 +27,11 @@ export default (props) => {
   return (
     <Grid container direction='column'>
       <Grid item>
-        <Grid container direction='row'>
+        <Grid container >{/*justify='flex-end' alignItems='center' direction='row'>*/}
           <Grid item>
-            <div>Bringing West Coast Technology<br /> to the Midwest</div>
+            <Typography > {/*align='center' variant='h2'*/}
+              Bringing West Coast Technology<br />to the Midwest
+            </Typography>
             <Grid container>
               <Grid item>
                 <Button variant='contained'>Free Estimate</Button>
@@ -36,12 +39,12 @@ export default (props) => {
               <Grid item>
                 <Button variant='outlined'>
                   Learn More
-                  <ButtonArrow width={15} height={15} fill='red'/>
+                  <ButtonArrow width={15} height={15} fill='red' />
                 </Button>
               </Grid>
             </Grid>
           </Grid>
-          <Grid item>
+          <Grid sm item>
             <Lottie options={defaultOptions} height={'100%'} width={'100%'} />
           </Grid>
         </Grid>
