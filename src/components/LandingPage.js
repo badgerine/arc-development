@@ -9,7 +9,12 @@ import animationData from '../animations/landinganimation/data';
 import { Typography } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
-
+  animation: {
+    maxWidth: '50em',
+    minWidth: '21em',
+    marginTop: '2em',
+    marginLeft: '10%'
+  }
 }))
 
 export default (props) => {
@@ -27,9 +32,9 @@ export default (props) => {
   return (
     <Grid container direction='column'>
       <Grid item>
-        <Grid container >{/*justify='flex-end' alignItems='center' direction='row'>*/}
-          <Grid item>
-            <Typography > {/*align='center' variant='h2'*/}
+        <Grid container justify='flex-end' alignItems='center' direction='row'>
+          <Grid sm item>
+            <Typography align='center' variant='h2'>
               Bringing West Coast Technology<br />to the Midwest
             </Typography>
             <Grid container>
@@ -44,7 +49,7 @@ export default (props) => {
               </Grid>
             </Grid>
           </Grid>
-          <Grid sm item>
+          <Grid sm item className={classes.animation}>
             <Lottie options={defaultOptions} height={'100%'} width={'100%'} />
           </Grid>
         </Grid>
