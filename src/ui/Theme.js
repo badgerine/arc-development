@@ -31,7 +31,7 @@ export default createMuiTheme({
             color: 'white'
         },
         h2: {
-          fontFamily: 'Raleway',
+          // fontFamily: 'Raleway',
           fontWeight: 700,
           fontSize: '2.5rem',
           color: customBlue,
