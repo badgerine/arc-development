@@ -141,7 +141,7 @@ export default function Header(props) {
   const serviceMenuOptions = [
     { name: 'Services', link: '/services', activeValue: 1, activeIndex: 0 },
     { name: 'Custom Software Development', link: '/customsoftware', activeValue: 1, activeIndex: 1 },
-    { name: 'Mobile App Development', link: '/mobileapps', activeValue: 1, activeIndex: 2 },
+    { name: 'iOS/Android Development', link: '/mobileapps', activeValue: 1, activeIndex: 2 },
     { name: 'Website Development', link: '/websites', activeValue: 1, activeIndex: 3 }];
 
   const { value, selectedIndex, setValue, setSelectedIndex } = props;

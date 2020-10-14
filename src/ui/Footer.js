@@ -78,7 +78,7 @@ export default (props) => {
               <Grid item className={classes.link} component={Link} to='/customsoftware'
                 onClick={() => { props.setValue(1); props.setSelectedIndex(1) }} >Custom Software Development</Grid>
               <Grid item className={classes.link} component={Link} to='/mobileapps'
-                onClick={() => { props.setValue(1); props.setSelectedIndex(2) }} >Mobile App Development</Grid>
+                onClick={() => { props.setValue(1); props.setSelectedIndex(2) }} >iOS/Android Development</Grid>
               <Grid item className={classes.link} component={Link} to='/websites'
                 onClick={() => { props.setValue(1); props.setSelectedIndex(3) }} >Website Development</Grid>
             </Grid>
