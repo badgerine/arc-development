@@ -10,6 +10,7 @@ import ButtonArrow from '../ui/ButtonArrow';
 import animationData from '../animations/landinganimation/data';
 import customSoftwareIcon from '../assets/Custom_Software_Icon.svg';
 import mobileAppsIcon from '../assets/mobileIcon.svg';
+import websitesIcon from '../assets/websiteIcon.svg';
 
 
 const useStyles = makeStyles(theme => ({
@@ -169,6 +170,28 @@ export default (props) => {
           </Grid>
           <Grid item style={{marginRight: matchesSM ? 0 : '5em'}} >
             <img className={classes.icon} alt='mobile device icon' src={mobileAppsIcon}/>
+          </Grid>
+        </Grid>
+      </Grid>
+      <Grid item> {/*----Website Development Block----*/}
+        <Grid container direction='row' justify={matchesSM ? 'center' : undefined} className={classes.serviceContainer}>
+          <Grid item style={{marginLeft: matchesSM ? 0 : '5em', textAlign: matchesSM ? 'center' : undefined}}>
+            <Typography variant='h4'>
+              Website Development
+            </Typography>
+            <Typography variant='subtitle1' className={classes.subtitle}>
+              Reach More. Discover More. Sell More.
+            </Typography>
+            <Typography variant='subtitle1'>
+              Optimized for Search engines, built for speed.
+            </Typography>
+            <Button variant='outlined' className={classes.learnButton}>
+              <span style={{ marginRight: 10 }}>Learn More</span>
+              <ButtonArrow width={10} height={10} fill={theme.palette.common.arcBlue} />
+            </Button>
+          </Grid>
+          <Grid item>
+            <img className={classes.icon} alt='website development icon' src={websitesIcon}/>
           </Grid>
         </Grid>
       </Grid>
