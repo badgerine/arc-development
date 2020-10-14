@@ -53,7 +53,7 @@ const useStyles = makeStyles(theme => ({
       marginTop: '2em'
     }
   },
-  heroTextContainer:{
+  heroTextContainer: {
     minWidth: '21.5em',
     marginLeft: '1em',
     [theme.breakpoints.down('xs')]: {
@@ -77,7 +77,7 @@ export default (props) => {
 
   return (
     <Grid container direction='column' className={classes.mainContainer}>
-      <Grid item>
+      <Grid item> {/*----Hero Block----*/}
         <Grid container justify='flex-end' alignItems='center' direction='row'>
           <Grid sm item className={classes.heroTextContainer}>
             <Typography align='center' variant='h2'>
@@ -100,7 +100,21 @@ export default (props) => {
           </Grid>
         </Grid>
       </Grid>
+      <Grid item> {/*----Services Block----*/}
+        <Grid container direction='row'>
+          <Grid item>
+            <Typography variant='h4'>
+              Custom Software Development
+            </Typography>
+            <Typography variant='subtitle1'>
+              Save Energy. Save Time. Save Money.
+            </Typography>
+            <Typography variant='subtitle1'>
+              Complete digital solutions, from investigation to <span>celebration</span>
+            </Typography>
+          </Grid>
+        </Grid>
+      </Grid>
     </Grid>
   );
-
 }
