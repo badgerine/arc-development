@@ -8,6 +8,7 @@ import ButtonArrow from '../ui/ButtonArrow';
 import animationData from '../animations/landinganimation/data';
 import customSoftwareIcon from '../assets/Custom_Software_Icon.svg';
 import { Typography } from '@material-ui/core';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 const useStyles = makeStyles(theme => ({
   animation: {
@@ -63,16 +64,32 @@ const useStyles = makeStyles(theme => ({
     ...theme.typography.learnButton,
     fontSize: '0.7rem',
     height: 35,
-    // padding: 5
+    // padding: 5,
+    [theme.breakpoints.down('xs')]: {
+      marginBottom: '2em'
+    }
   },
   subtitle: {
     marginBottom: '1em'
+  },
+  icon: {
+    marginLeft: '2em',
+    [theme.breakpoints.down('xs')]: {
+      marginLeft: 0
+    }
+  },
+  serviceContainer: {
+    marginTop: '12em',
+    [theme.breakpoints.down('xs')]: {
+      padding: 25
+    }
   }
 }))
 
 export default (props) => {
   const classes = useStyles();
   const theme = useTheme();
+  const matchesSM = useMediaQuery(theme.breakpoints.down('sm'));
 
   const defaultOptions = {
     loop: true,
@@ -109,8 +126,8 @@ export default (props) => {
         </Grid>
       </Grid>
       <Grid item> {/*----Services Block----*/}
-        <Grid container direction='row'>
-          <Grid item>
+        <Grid container direction='row' justify={matchesSM ? 'center' : undefined} className={classes.serviceContainer}>
+          <Grid item style={{marginLeft: matchesSM ? 0 : '5em', textAlign: matchesSM ? 'center' : undefined}}>
             <Typography variant='h4'>
               Custom Software Development
             </Typography>
@@ -126,7 +143,7 @@ export default (props) => {
             </Button>
           </Grid>
           <Grid item>
-            <img alt='custom software icon' src={customSoftwareIcon}/>
+            <img className={classes.icon} alt='custom software icon' src={customSoftwareIcon}/>
           </Grid>
         </Grid>
       </Grid>
