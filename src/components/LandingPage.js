@@ -6,6 +6,7 @@ import Button from '@material-ui/core/Button';
 import ButtonArrow from '../ui/ButtonArrow';
 
 import animationData from '../animations/landinganimation/data';
+import customSoftwareIcon from '../assets/Custom_Software_Icon.svg';
 import { Typography } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
@@ -33,13 +34,7 @@ const useStyles = makeStyles(theme => ({
     marginTop: '1em'
   },
   learnButtonHero: {
-    color: theme.palette.common.arcBlue,
-    borderColor: theme.palette.common.arcBlue,
-    borderWidth: 2,
-    borderRadius: 50,
-    textTransform: 'none',
-    fontFamily: 'Roboto',
-    fontWeight: 'bold',
+    ...theme.typography.learnButton,
     fontSize: '0.9rem',
     height: 45,
     width: 145
@@ -59,6 +54,19 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.down('xs')]: {
       marginLeft: 0
     }
+  },
+  specialText: {
+    fontFamily: 'Pacifico',
+    color: theme.palette.common.arcOrange
+  },
+  learnButton: {
+    ...theme.typography.learnButton,
+    fontSize: '0.7rem',
+    height: 35,
+    // padding: 5
+  },
+  subtitle: {
+    marginBottom: '1em'
   }
 }))
 
@@ -106,12 +114,19 @@ export default (props) => {
             <Typography variant='h4'>
               Custom Software Development
             </Typography>
-            <Typography variant='subtitle1'>
+            <Typography variant='subtitle1' className={classes.subtitle}>
               Save Energy. Save Time. Save Money.
             </Typography>
             <Typography variant='subtitle1'>
-              Complete digital solutions, from investigation to <span>celebration</span>
+              Complete digital solutions, from investigation to{' '}<span className={classes.specialText}>celebration.</span>
             </Typography>
+            <Button variant='outlined' className={classes.learnButton}>
+              <span style={{ marginRight: 10 }}>Learn More</span>
+              <ButtonArrow width={10} height={10} fill={theme.palette.common.arcBlue} />
+            </Button>
+          </Grid>
+          <Grid item>
+            <img alt='custom software icon' src={customSoftwareIcon}/>
           </Grid>
         </Grid>
       </Grid>
