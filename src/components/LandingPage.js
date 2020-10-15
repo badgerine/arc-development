@@ -15,6 +15,7 @@ import customSoftwareIcon from '../assets/Custom_Software_Icon.svg';
 import mobileAppsIcon from '../assets/mobileIcon.svg';
 import websitesIcon from '../assets/websiteIcon.svg';
 import revolutionBackground from '../assets/repeatingBackground.svg';
+import infoBackground from '../assets/infoBackground.svg';
 
 
 const useStyles = makeStyles(theme => ({
@@ -112,6 +113,14 @@ const useStyles = makeStyles(theme => ({
       borderRadius: 0,
       width: '100%'
     }
+  },
+  infoBackground: {
+    backgroundImage: `url(${infoBackground})`,
+    backgroundPosition: 'center',
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    height: '100%',
+    width: '100%'
   }
 }))
 
@@ -222,7 +231,7 @@ export default (props) => {
         </Grid>
       </Grid>
       <Grid item>{/*----The Revolution Block----*/}
-        <Grid container alignItems='center' justify='center' style={{height: '100em', marginTop: '12em'}}>
+        <Grid container alignItems='center' justify='center' style={{ height: '100em', marginTop: '12em' }}>
           <Card className={classes.revolutionCard}>
             <CardContent>
               <Grid direction='column' style={{ textAlign: 'center' }}>
@@ -244,6 +253,37 @@ export default (props) => {
             </CardContent>
           </Card>
           <div className={classes.revolutionBackground} />
+        </Grid>
+      </Grid>
+      <Grid item>{/*----Information Block----*/}
+        <Grid container direction='row' style={{ height: '80em' }} alignItems='center'>
+          <Grid item style={{ position: 'absolute', marginLeft: '5em' }}>
+            <Grid container direction='column' justify='flex-start'>
+              <Typography variant='h2' style={{ color: 'white' }}>
+                About Us
+              </Typography>
+              <Typography variant='subtitle2'>
+                Let's get personal.
+              </Typography>
+              <Grid item>
+                <Button variant='outlined' className={classes.learnButtonHero} style={{color: 'white', borderColor: 'white'}}>
+                  <span style={{ marginRight: 10 }}>Learn More</span>
+                  <ButtonArrow width={15} height={15} fill='white' />
+                </Button>
+              </Grid>
+            </Grid>
+          </Grid>
+          <Grid item style={{ position: 'absolute' }}>
+            <Grid container direction='column' justify='flex-end'>
+              <Typography variant='h2' style={{ color: 'white' }}>
+                Contact Us
+              </Typography>
+              <Typography variant='subtitle2'>
+                Say Hello!
+              </Typography>
+            </Grid>
+          </Grid>
+          <div className={classes.infoBackground} />
         </Grid>
       </Grid>
     </Grid>
