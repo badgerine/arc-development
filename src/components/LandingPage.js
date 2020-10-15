@@ -128,6 +128,7 @@ export default (props) => {
   const classes = useStyles();
   const theme = useTheme();
   const matchesSM = useMediaQuery(theme.breakpoints.down('sm'));
+  const matchesXS = useMediaQuery(theme.breakpoints.down('xs'));
 
   const defaultOptions = {
     loop: true,
@@ -257,30 +258,39 @@ export default (props) => {
       </Grid>
       <Grid item>{/*----Information Block----*/}
         <Grid container direction='row' style={{ height: '80em' }} alignItems='center'>
-          <Grid item style={{ position: 'absolute', marginLeft: '5em' }}>
-            <Grid container direction='column' justify='flex-start'>
-              <Typography variant='h2' style={{ color: 'white' }}>
-                About Us
+          <Grid item container direction={matchesXS ? 'column' : 'row'} spacing={matchesXS ? 10 : 0} style={{ position: 'absolute'}}>
+            <Grid item sm style={{ marginLeft: matchesXS ? 0 : matchesSM ? '2em' : '5em' }}>
+              <Grid container direction='column' alignItems={matchesXS ? 'center' : 'inherit'}>
+                <Typography variant='h2' style={{ color: 'white' }}>
+                  About Us
               </Typography>
-              <Typography variant='subtitle2'>
-                Let's get personal.
+                <Typography variant='subtitle2'>
+                  Let's get personal.
               </Typography>
-              <Grid item>
-                <Button variant='outlined' className={classes.learnButtonHero} style={{color: 'white', borderColor: 'white'}}>
-                  <span style={{ marginRight: 10 }}>Learn More</span>
-                  <ButtonArrow width={15} height={15} fill='white' />
-                </Button>
+                <Grid item>
+                  <Button variant='outlined' className={classes.learnButtonHero} style={{ color: 'white', borderColor: 'white' }}>
+                    <span style={{ marginRight: 10 }}>Learn More</span>
+                    <ButtonArrow width={15} height={15} fill='white' />
+                  </Button>
+                </Grid>
               </Grid>
             </Grid>
-          </Grid>
-          <Grid item style={{ position: 'absolute' }}>
-            <Grid container direction='column' justify='flex-end'>
-              <Typography variant='h2' style={{ color: 'white' }}>
-                Contact Us
+            {/* <Grid item sm style={{ marginRight: '5em', textAlign: 'right' }}> */}
+            <Grid item sm style={{ marginRight: matchesXS ? 0 : matchesSM ? '2em' : '5em' }}>
+              <Grid container direction='column' alignItems={matchesXS ? 'center' : 'flex-end'} >
+                <Typography variant='h2' style={{ color: 'white' }}>
+                  Contact Us
               </Typography>
-              <Typography variant='subtitle2'>
-                Say Hello!
-              </Typography>
+                <Typography variant='subtitle2'>
+                  Say Hello! <span role='img' aira-label='waving hand'></span>
+                </Typography>
+                <Grid item>
+                  <Button variant='outlined' className={classes.learnButtonHero} style={{ color: 'white', borderColor: 'white' }}>
+                    <span style={{ marginRight: 10 }}>Learn More</span>
+                    <ButtonArrow width={15} height={15} fill='white' />
+                  </Button>
+                </Grid>
+              </Grid>
             </Grid>
           </Grid>
           <div className={classes.infoBackground} />
