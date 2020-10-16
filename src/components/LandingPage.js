@@ -8,7 +8,7 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 
-
+import CallToAction from './CallToAction';
 import ButtonArrow from '../ui/ButtonArrow';
 import animationData from '../animations/landinganimation/data';
 import customSoftwareIcon from '../assets/Custom_Software_Icon.svg';
@@ -258,7 +258,7 @@ export default (props) => {
       </Grid>
       <Grid item>{/*----Information Block----*/}
         <Grid container direction='row' style={{ height: '80em' }} alignItems='center'>
-          <Grid item container direction={matchesXS ? 'column' : 'row'} spacing={matchesXS ? 10 : 0} style={{ position: 'absolute'}}>
+          <Grid item container direction={matchesXS ? 'column' : 'row'} spacing={matchesXS ? 10 : 0} style={{ position: 'absolute' }}>
             <Grid item sm style={{ marginLeft: matchesXS ? 0 : matchesSM ? '2em' : '5em' }}>
               <Grid container direction='column' alignItems={matchesXS ? 'center' : 'inherit'}>
                 <Typography variant='h2' style={{ color: 'white' }}>
@@ -268,9 +268,9 @@ export default (props) => {
                   Let's get personal.
               </Typography>
                 <Grid item>
-                  <Button variant='outlined' className={classes.learnButtonHero} style={{ color: 'white', borderColor: 'white' }}>
+                  <Button variant='outlined' className={classes.learnButton} style={{ color: 'white', borderColor: 'white' }}>
                     <span style={{ marginRight: 10 }}>Learn More</span>
-                    <ButtonArrow width={15} height={15} fill='white' />
+                    <ButtonArrow width={10} height={10} fill='white' />
                   </Button>
                 </Grid>
               </Grid>
@@ -285,9 +285,9 @@ export default (props) => {
                   Say Hello! <span role='img' aira-label='waving hand'></span>
                 </Typography>
                 <Grid item>
-                  <Button variant='outlined' className={classes.learnButtonHero} style={{ color: 'white', borderColor: 'white' }}>
+                  <Button variant='outlined' className={classes.learnButton} style={{ color: 'white', borderColor: 'white' }}>
                     <span style={{ marginRight: 10 }}>Learn More</span>
-                    <ButtonArrow width={15} height={15} fill='white' />
+                    <ButtonArrow width={10} height={10} fill='white' />
                   </Button>
                 </Grid>
               </Grid>
@@ -295,6 +295,9 @@ export default (props) => {
           </Grid>
           <div className={classes.infoBackground} />
         </Grid>
+      </Grid>
+      <Grid>{/*----Call To Action----*/}
+        <CallToAction />
       </Grid>
     </Grid>
   );
