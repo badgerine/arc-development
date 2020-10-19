@@ -8,7 +8,8 @@ export default createMuiTheme({
   palette: {
     common: {
       arcBlue: customBlue,
-      arcOrange: customOrange
+      arcOrange: customOrange,
+      arcGrey: customGrey
     },
     primary: {
       main: customBlue,
@@ -57,6 +58,11 @@ export default createMuiTheme({
     subtitle2: {
       fontSize: '1.25rem',
       color: 'white',
+      fontWeight: 300
+    },
+    body1: {
+      fontSize: '1.25rem',
+      color: customGrey,
       fontWeight: 300
     },
     learnButton: {

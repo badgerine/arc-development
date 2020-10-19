@@ -158,7 +158,7 @@ export default function Header(props) {
         props.setValue(5);
       }
     })
-  }, [value, selectedIndex, routes, serviceMenuOptions]);
+  }, [value, selectedIndex]);
 
   const handleChange = (e, newValue) => {
     props.setValue(newValue);

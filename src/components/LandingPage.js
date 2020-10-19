@@ -183,7 +183,7 @@ export default (props) => {
               variant='outlined'
               className={classes.learnButton}
               component={Link} to='/customsoftware'
-              onClick={() => { props.setValue(1); props.setSelectedIndex(1); }}>
+              onClick={() => { props.setValue(1); props.setSelectedIndex(1)}}>
               <span style={{ marginRight: 10 }}>Learn More</span>
               <ButtonArrow width={10} height={10} fill={theme.palette.common.arcBlue} />
             </Button>

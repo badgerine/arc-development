@@ -12,21 +12,36 @@ import backArrow from '../assets/backArrow.svg';
 import forwardArrow from '../assets/forwardArrow.svg';
 
 const useStyles = makeStyles(theme => ({
-
+  heading: {
+    maxWidth: '40em',
+  },
+  arrowContainer: {
+    marginTop: '0.5em',
+  },
+  mainContainer: {
+    paddingLeft: '5em',
+    paddingRight: '5em',
+    paddingTop: '2em',
+    paddingBottom: '10em'
+  }
 }));
 
 const CustomSoftware = (props) => {
   const classes = useStyles();
 
   return (
-    <Grid container direction='column'>
+    <Grid container direction='column' className={classes.mainContainer}>
       <Grid item container direction='row'>
-        <Grid item>
-          <IconButton>{/*Specialized to only containing an image (vs Button) */}
+        <Grid item className={classes.arrowContainer} style={{ marginRight: '1em', marginLeft: '-3.5em' }}>
+          <IconButton
+            style={{ backgroundColor: 'transparent' }}
+            component={Link} to='/services'
+            onClick={props.setSelectedIndex(0)}
+          >
             <img src={backArrow} alt='Back to Services Page' />
           </IconButton>
         </Grid>
-        <Grid item container direction='column'>
+        <Grid item container direction='column' className={classes.heading}>
           <Grid item>
             <Typography variant='h2'>Custom Software Development</Typography>
           </Grid>
@@ -51,8 +66,12 @@ const CustomSoftware = (props) => {
             </Typography>
           </Grid>
         </Grid>
-        <Grid item>
-        <IconButton>{/*Specialized to only containing an image (vs Button) */}
+        <Grid item className={classes.arrowContainer}>
+          <IconButton
+            style={{ backgroundColor: 'transparent' }}
+            component={Link} to='/mobileapps'
+            onClick={props.setSelectedIndex(2)}
+          >
             <img src={forwardArrow} alt='Forward to iOS/Android Development' />
           </IconButton>
         </Grid>
