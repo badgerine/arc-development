@@ -155,7 +155,7 @@ export default (props) => {
                 </Button>
               </Grid>
               <Grid item>
-                <Button variant='outlined' className={classes.learnButtonHero} component={Link} to='/revolution' >
+                <Button variant='outlined' className={classes.learnButtonHero} component={Link} to='/revolution' onClick={() => props.setValue(2)}>
                   <span style={{ marginRight: 10 }}>Learn More</span>
                   <ButtonArrow width={15} height={15} fill={theme.palette.common.arcBlue} />
                 </Button>
@@ -179,7 +179,11 @@ export default (props) => {
             <Typography variant='subtitle1'>
               Complete digital solutions, from investigation to{' '}<span className={classes.specialText}>celebration.</span>
             </Typography>
-            <Button variant='outlined' className={classes.learnButton} component={Link} to='/customsoftware' >
+            <Button
+              variant='outlined'
+              className={classes.learnButton}
+              component={Link} to='/customsoftware'
+              onClick={() => { props.setValue(1); props.setSelectedIndex(1); }}>
               <span style={{ marginRight: 10 }}>Learn More</span>
               <ButtonArrow width={10} height={10} fill={theme.palette.common.arcBlue} />
             </Button>
@@ -202,7 +206,13 @@ export default (props) => {
               Integrate your web experience or create a standalone app
               {matchesSM ? ' ' : <br />}with either mobile platform.
             </Typography>
-            <Button variant='outlined' className={classes.learnButton} component={Link} to='/mobileapps' >
+            <Button
+              variant='outlined'
+              className={classes.learnButton}
+              component={Link}
+              to='/mobileapps'
+              onClick={() => { props.setValue(1); props.setSelectedIndex(2); }}>
+              >
               <span style={{ marginRight: 10 }}>Learn More</span>
               <ButtonArrow width={10} height={10} fill={theme.palette.common.arcBlue} />
             </Button>
@@ -224,7 +234,13 @@ export default (props) => {
             <Typography variant='subtitle1'>
               Optimized for Search engines, built for speed.
             </Typography>
-            <Button variant='outlined' className={classes.learnButton} component={Link} to='/websites' >
+            <Button
+              variant='outlined'
+              className={classes.learnButton}
+              component={Link}
+              to='/websites'
+              onClick={() => { props.setValue(1); props.setSelectedIndex(3); }}>
+              >
               <span style={{ marginRight: 10 }}>Learn More</span>
               <ButtonArrow width={10} height={10} fill={theme.palette.common.arcBlue} />
             </Button>
@@ -248,7 +264,13 @@ export default (props) => {
                   <Typography variant='subtitle1'>
                     Visionary insights coupled with cutting-edge technology is a recipe for revotuion.
                   </Typography>
-                  <Button variant='outlined' className={classes.learnButtonHero} component={Link} to='/revolution' >
+                  <Button
+                    variant='outlined'
+                    className={classes.learnButtonHero}
+                    component={Link}
+                    to='/revolution'
+                    onClick={() => { props.setValue(2) }}
+                  >
                     <span style={{ marginRight: 10 }}>Learn More</span>
                     <ButtonArrow width={15} height={15} fill={theme.palette.common.arcBlue} />
                   </Button>
@@ -260,10 +282,15 @@ export default (props) => {
         </Grid>
       </Grid>
       <Grid item>{/*----Information Block----*/}
-        <Grid container direction='row' style={{ height: '80em' }} alignItems='center'>
-          <Grid item container direction={matchesXS ? 'column' : 'row'} spacing={matchesXS ? 10 : 0} style={{ position: 'absolute' }}>
+        <Grid container direction='row' className={classes.infoBackground} style={{ height: '80em' }} alignItems='center'>
+          <Grid item container direction={matchesXS ? 'column' : 'row'} >
             <Grid item sm style={{ marginLeft: matchesXS ? 0 : matchesSM ? '2em' : '5em' }}>
-              <Grid container direction='column' alignItems={matchesXS ? 'center' : 'inherit'}>
+              <Grid
+                container
+                direction='column'
+                alignItems={matchesXS ? 'center' : 'inherit'}
+                style={{marginBottom: matchesXS ? '10em' : 0}}
+              >
                 <Typography variant='h2' style={{ color: 'white' }}>
                   About Us
               </Typography>
@@ -276,6 +303,7 @@ export default (props) => {
                     className={classes.learnButton}
                     style={{ color: 'white', borderColor: 'white' }}
                     component={Link} to='/about'
+                    onClick={() => props.setValue(3)}
                   >
                     <span style={{ marginRight: 10 }}>Learn More</span>
                     <ButtonArrow width={10} height={10} fill='white' />
@@ -298,6 +326,7 @@ export default (props) => {
                     className={classes.learnButton}
                     style={{ color: 'white', borderColor: 'white' }}
                     component={Link} to='/contact'
+                    onClick={() => props.setValue(4)}
                   >
                     <span style={{ marginRight: 10 }}>Learn More</span>
                     <ButtonArrow width={10} height={10} fill='white' />
@@ -306,11 +335,10 @@ export default (props) => {
               </Grid>
             </Grid>
           </Grid>
-          <div className={classes.infoBackground} />
         </Grid>
       </Grid>
       <Grid>{/*----Call To Action----*/}
-        <CallToAction />
+        <CallToAction setValue={props.setValue} />
       </Grid>
     </Grid>
   );

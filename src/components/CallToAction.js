@@ -43,6 +43,9 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.down('sm')]: {
       marginLeft: 0,
       marginRight: 0,
+    },
+    '&:hover': {
+      backgroundColor: theme.palette.secondary.light
     }
   }
 }))
@@ -75,6 +78,7 @@ const CallToAction = (props) => {
                 variant='outlined'
                 className={classes.learnButton}
                 component={Link} to='/revolution'
+                onClick={() => props.setValue(2)}
               >
                 <span style={{ marginRight: 5 }}>Learn More</span>
                 <ButtonArrow width={10} height={10} fill={theme.palette.common.arcBlue} />
@@ -88,6 +92,7 @@ const CallToAction = (props) => {
           variant='contained'
           className={classes.estimateButton}
           component={Link} to='/estimate'
+          onClick={() => { props.setValue(5) }}
         >
           Free Estimate
         </Button>
