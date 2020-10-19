@@ -7,6 +7,7 @@ import { Typography } from '@material-ui/core';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
+import { Link } from 'react-router-dom';
 
 import CallToAction from './CallToAction';
 import ButtonArrow from '../ui/ButtonArrow';
@@ -149,10 +150,12 @@ export default (props) => {
             </Typography>
             <Grid container justify='center' className={classes.buttonContainer}>
               <Grid item>
-                <Button className={classes.estimateButton} variant='contained'>Free Estimate</Button>
+                <Button className={classes.estimateButton} variant='contained' component={Link} to='/estimate' onClick={() => props.setValue(5)}>
+                  Free Estimate
+                </Button>
               </Grid>
               <Grid item>
-                <Button variant='outlined' className={classes.learnButtonHero}>
+                <Button variant='outlined' className={classes.learnButtonHero} component={Link} to='/revolution' >
                   <span style={{ marginRight: 10 }}>Learn More</span>
                   <ButtonArrow width={15} height={15} fill={theme.palette.common.arcBlue} />
                 </Button>
@@ -176,7 +179,7 @@ export default (props) => {
             <Typography variant='subtitle1'>
               Complete digital solutions, from investigation to{' '}<span className={classes.specialText}>celebration.</span>
             </Typography>
-            <Button variant='outlined' className={classes.learnButton}>
+            <Button variant='outlined' className={classes.learnButton} component={Link} to='/customsoftware' >
               <span style={{ marginRight: 10 }}>Learn More</span>
               <ButtonArrow width={10} height={10} fill={theme.palette.common.arcBlue} />
             </Button>
@@ -199,7 +202,7 @@ export default (props) => {
               Integrate your web experience or create a standalone app
               {matchesSM ? ' ' : <br />}with either mobile platform.
             </Typography>
-            <Button variant='outlined' className={classes.learnButton}>
+            <Button variant='outlined' className={classes.learnButton} component={Link} to='/mobileapps' >
               <span style={{ marginRight: 10 }}>Learn More</span>
               <ButtonArrow width={10} height={10} fill={theme.palette.common.arcBlue} />
             </Button>
@@ -221,7 +224,7 @@ export default (props) => {
             <Typography variant='subtitle1'>
               Optimized for Search engines, built for speed.
             </Typography>
-            <Button variant='outlined' className={classes.learnButton}>
+            <Button variant='outlined' className={classes.learnButton} component={Link} to='/websites' >
               <span style={{ marginRight: 10 }}>Learn More</span>
               <ButtonArrow width={10} height={10} fill={theme.palette.common.arcBlue} />
             </Button>
@@ -245,7 +248,7 @@ export default (props) => {
                   <Typography variant='subtitle1'>
                     Visionary insights coupled with cutting-edge technology is a recipe for revotuion.
                   </Typography>
-                  <Button variant='outlined' className={classes.learnButtonHero}>
+                  <Button variant='outlined' className={classes.learnButtonHero} component={Link} to='/revolution' >
                     <span style={{ marginRight: 10 }}>Learn More</span>
                     <ButtonArrow width={15} height={15} fill={theme.palette.common.arcBlue} />
                   </Button>
@@ -268,7 +271,12 @@ export default (props) => {
                   Let's get personal.
               </Typography>
                 <Grid item>
-                  <Button variant='outlined' className={classes.learnButton} style={{ color: 'white', borderColor: 'white' }}>
+                  <Button
+                    variant='outlined'
+                    className={classes.learnButton}
+                    style={{ color: 'white', borderColor: 'white' }}
+                    component={Link} to='/about'
+                  >
                     <span style={{ marginRight: 10 }}>Learn More</span>
                     <ButtonArrow width={10} height={10} fill='white' />
                   </Button>
@@ -285,7 +293,12 @@ export default (props) => {
                   Say Hello! <span role='img' aira-label='waving hand'></span>
                 </Typography>
                 <Grid item>
-                  <Button variant='outlined' className={classes.learnButton} style={{ color: 'white', borderColor: 'white' }}>
+                  <Button
+                    variant='outlined'
+                    className={classes.learnButton}
+                    style={{ color: 'white', borderColor: 'white' }}
+                    component={Link} to='/contact'
+                  >
                     <span style={{ marginRight: 10 }}>Learn More</span>
                     <ButtonArrow width={10} height={10} fill='white' />
                   </Button>

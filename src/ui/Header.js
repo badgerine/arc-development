@@ -144,19 +144,21 @@ export default function Header(props) {
     { name: 'iOS/Android Development', link: '/mobileapps', activeValue: 1, activeIndex: 2 },
     { name: 'Website Development', link: '/websites', activeValue: 1, activeIndex: 3 }];
 
-  const { value, selectedIndex, setValue, setSelectedIndex } = props;
+  const { value, selectedIndex } = props;
   useEffect(() => {
     [...routes, ...serviceMenuOptions].forEach(route => {
       if (route.link === window.location.pathname) {
         if (value !== route.activeValue) {
-          setValue(route.activeValue);
+          props.setValue(route.activeValue);
           if (route.activeIndex && route.activeIndex !== selectedIndex) {
-            setSelectedIndex(route.activeIndex);
+            props.setSelectedIndex(route.activeIndex);
           }
         }
+      } else if(window.location.pathname === '/estimate'){
+        props.setValue(5);
       }
     })
-  }, [value, selectedIndex, routes, serviceMenuOptions, setValue, setSelectedIndex]);
+  }, [value, selectedIndex, routes, serviceMenuOptions]);
 
   const handleChange = (e, newValue) => {
     props.setValue(newValue);
@@ -186,9 +188,9 @@ export default function Header(props) {
             aria-owns={route.ariaOwns} aria-haspopup={route.ariaPopup} onMouseOver={route.mouseOver} />
         ))}
       </Tabs>
-      <Button variant="contained" color='secondary' className={classes.button}>
+      <Button variant="contained" color='secondary' className={classes.button} component={Link} to='/estimate' onClick={() => props.setValue(5)}>
         Free Estimate
-            </Button>
+      </Button>
       <Menu
         id='simple-menu'
         anchorEl={anchorEl}
