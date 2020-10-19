@@ -33,7 +33,7 @@ const useStyles = makeStyles(theme => ({
     }
   },
   serviceContainer: {
-    marginTop: '12em',
+    marginTop: '10em',
     [theme.breakpoints.down('xs')]: {
       padding: 25
     }
@@ -47,14 +47,22 @@ const Services = (props) => {
 
   return (
     <Grid container direction='column'>
-      <Grid item>
-        <Typography variant='h4'>
+      <Grid item style={{marginLeft: matchesSM ? 0 : '5em', marginTop: matchesSM ? '1em': '2em'}}>
+        <Typography variant='h2' gutterBottom align={matchesSM ? 'center' : undefined}>
           Services
         </Typography>
       </Grid>
       <Grid item> {/*----iOS/Android Block----*/}
-        <Grid container direction='row' justify={matchesSM ? 'center' : 'flex-end'} className={classes.serviceContainer}>
-          <Grid item style={{ textAlign: matchesSM ? 'center' : undefined }}>
+        <Grid
+          container
+          direction='row'
+          justify={matchesSM ? 'center' : 'flex-end'}
+          className={classes.serviceContainer}
+          style={{ marginTop: matchesSM ? '1em' : '5em' }}
+        >
+          <Grid
+            item
+            style={{ textAlign: matchesSM ? 'center' : undefined, width: matchesSM ? undefined : '35em' }}>
             <Typography variant='h4'>
               iOS/Android App Development
             </Typography>
@@ -70,14 +78,14 @@ const Services = (props) => {
               className={classes.learnButton}
               component={Link}
               to='/mobileapps'
-              onClick={() => { props.setValue(1); props.setSelectedIndex(2); }}>
+              onClick={() => { props.setValue(1); props.setSelectedIndex(2); }}
               >
               <span style={{ marginRight: 10 }}>Learn More</span>
               <ButtonArrow width={10} height={10} fill={theme.palette.common.arcBlue} />
             </Button>
           </Grid>
           <Grid item style={{ marginRight: matchesSM ? 0 : '5em' }} >
-            <img className={classes.icon} alt='mobile device icon' src={mobileAppsIcon} />
+            <img className={classes.icon} alt='mobile device icon' src={mobileAppsIcon} width='250em'/>
           </Grid>
         </Grid>
       </Grid>
@@ -108,8 +116,17 @@ const Services = (props) => {
         </Grid>
       </Grid>
       <Grid item> {/*----Website Development Block----*/}
-        <Grid container direction='row' justify={matchesSM ? 'center' : 'flex-end'} className={classes.serviceContainer}>
-          <Grid item style={{ textAlign: matchesSM ? 'center' : undefined }}>
+        <Grid
+          container
+          direction='row'
+          justify={matchesSM ? 'center' : 'flex-end'}
+          className={classes.serviceContainer}
+          style={{ marginBottom: '10em' }}
+        >
+          <Grid
+            item
+            style={{ textAlign: matchesSM ? 'center' : undefined, width: matchesSM ? undefined : '35em' }}
+          >
             <Typography variant='h4'>
               Website Development
             </Typography>
@@ -124,8 +141,8 @@ const Services = (props) => {
               className={classes.learnButton}
               component={Link}
               to='/websites'
-              onClick={() => { props.setValue(1); props.setSelectedIndex(3); }}>
-              >
+              onClick={() => { props.setValue(1); props.setSelectedIndex(3); }}
+            >
               <span style={{ marginRight: 10 }}>Learn More</span>
               <ButtonArrow width={10} height={10} fill={theme.palette.common.arcBlue} />
             </Button>
@@ -136,6 +153,7 @@ const Services = (props) => {
               style={{ marginRight: matchesSM ? 0 : '5em' }}
               alt='website development icon'
               src={websitesIcon}
+              width='250em'
             />
           </Grid>
         </Grid>
