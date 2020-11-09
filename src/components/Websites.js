@@ -112,8 +112,8 @@ const Websites = (props) => {
             </Grid>
           </Grid>
         </Grid>
-        <Grid item>
-          <Typography variant='body1' paragraph className={classes.paragraphContainer}>
+        <Grid item className={classes.paragraphContainer}>
+          <Typography variant='body1' paragraph>
             Knowledge is power, and data is 21st Century gold.
             Analyzing this data can reveal hidden patterns and trends in your business,
             empowering you to make smarter decisions with measurable effects.
@@ -138,32 +138,34 @@ const Websites = (props) => {
             </Grid>
           </Grid>
         </Grid>
-        <Grid item>
-          <Typography variant='body1' paragraph className={classes.paragraphContainer}>
+        <Grid item className={classes.paragraphContainer}>
+          <Typography variant='body1' paragraph>
             It’s no secret that people like to shop online.
           </Typography>
-          <Typography variant='body1' paragraph className={classes.paragraphContainer}>
+          <Typography variant='body1' paragraph>
             In 2017 over $2.3 trillion was spent in e-commerce, and it’s time for your slice of that pie.
           </Typography>
         </Grid>
       </Grid>
       {/*4th layout container - outreach */}
       <Grid item container direction='row'
-        className={Array(classes.rowContainer, classes.itemContainer).join(' ')}
+        className={classes.rowContainer}
         alignItems='center'
       >
-        <Grid item container direction='column' md>
-          <Grid item>
-            <Typography variant='h4'>
-              Outreach
-            </Typography>
-          </Grid>
-          <Grid item>
-            <img className={classes.icon} alt='outreach icon' src={outreachIcon} />
+        <Grid item >
+          <Grid container direction='column'>
+            <Grid item>
+              <Typography variant='h4'>
+                Outreach
+              </Typography>
+            </Grid>
+            <Grid item>
+              <img className={classes.icon} alt='megaphone' src={outreachIcon} />
+            </Grid>
           </Grid>
         </Grid>
-        <Grid item md >
-          <Typography variant='body1' paragraph >
+        <Grid item className={classes.paragraphContainer}>
+          <Typography variant='body1' paragraph>
             Draw people in with a dazzling website.
             Showing off your products online is a great way to help customers
             decide what’s right for them before visiting in person.
@@ -172,30 +174,34 @@ const Websites = (props) => {
       </Grid>
       {/*5th layout container - seo */}
       <Grid item container direction='row'
-        className={Array(classes.rowContainer, classes.itemContainer).join(' ')}
-        alignItems='flex-end'
+        className={classes.rowContainer}
+        alignItems='center'
+        justify={matchesSM ? 'center' : 'flex-end'}
       >
-        <Grid item container direction='column' md>
-          <Grid item>
-            <Typography variant='h4' noWrap>
-              Search Engine Optimization
-            </Typography>
-          </Grid>
-          <Grid item>
-            <img className={classes.icon} alt='search engine optimization icon' src={seoIcon} />
+        <Grid item>
+          <Grid container direction='column' >
+            <Grid item>
+              <Typography variant='h4' noWrap>
+                Search Engine Optimization
+              </Typography>
+            </Grid>
+            <Grid item>
+              <img className={classes.icon} alt='search engine optimization icon' src={seoIcon} />
+            </Grid>
           </Grid>
         </Grid>
-        <Grid item md >
+        <Grid item className={classes.paragraphContainer}>
           <Typography variant='body1' paragraph >
             How often have you ever been to the second page of Google results?
-          </Typography>
+            </Typography>
           <Typography variant='body1' paragraph >
             If you’re like us, probably never.
-          </Typography>
+            </Typography>
           <Typography variant='body1' paragraph >
             Customers don’t go there either, so we make sure your website is designed to end up on top.
           </Typography>
         </Grid>
+
       </Grid>
     </Grid>
   )
