@@ -26,7 +26,7 @@ const useStyles = makeStyles(theme => ({
   rowContainer: {
     paddingLeft: '5em',
     // paddingRight: '5em',
-    paddingBottom: '10em',
+    marginBottom: '15em',
     [theme.breakpoints.down('sm')]: {
       paddingLeft: '1.5em',
       paddingRight: '1.5em',
@@ -37,7 +37,12 @@ const useStyles = makeStyles(theme => ({
   },
   paragraphContainer: {
     maxWidth: '30em',
-  }
+    marginLeft: '1em',
+    [theme.breakpoints.down('sm')]: {
+      textAlign: 'center',
+      marginLeft: '0',
+    }
+  },
 }));
 
 const Websites = (props) => {
@@ -98,14 +103,14 @@ const Websites = (props) => {
         </Hidden>
       </Grid>
       {/*2nd layout container - analytics */}
-      <Grid item container direction='row'
+      <Grid item container direction={matchesSM ? 'column' : 'row'}
         className={classes.rowContainer}
         alignItems='center'
       >
         <Grid item >
           <Grid container direction='column'>
             <Grid item>
-              <Typography variant='h4' gutterBottom>
+              <Typography variant='h4' gutterBottom align={matchesSM ? 'center': undefined}>
                 Analytics
               </Typography>
             </Grid>
@@ -114,7 +119,7 @@ const Websites = (props) => {
             </Grid>
           </Grid>
         </Grid>
-        <Grid item className={classes.paragraphContainer}>
+        <Grid item className={classes.paragraphContainer} style={{marginLeft: 0}}>
           <Typography variant='body1' paragraph>
             Knowledge is power, and data is 21st Century gold.
             Analyzing this data can reveal hidden patterns and trends in your business,
@@ -123,7 +128,7 @@ const Websites = (props) => {
         </Grid>
       </Grid>
       {/*3rd layout container - e-commerce */}
-      <Grid item container direction='row'
+      <Grid item container direction={matchesSM ? 'column' : 'row'}
         className={classes.rowContainer}
         justify={matchesSM ? 'center' : 'flex-end'}
         alignItems='center'
@@ -131,16 +136,16 @@ const Websites = (props) => {
         <Grid item>
           <Grid container direction='column'>
             <Grid item>
-              <Typography variant='h4'>
+              <Typography variant='h4' align='center'>
                 E-Commerce
               </Typography>
             </Grid>
             <Grid item>
-              <img className={classes.icon} alt='ecommerce icon' src={ecommerceIcon} />
+              <img className={classes.icon} alt='world globe outline' src={ecommerceIcon} />
             </Grid>
           </Grid>
         </Grid>
-        <Grid item className={classes.paragraphContainer}>
+        <Grid item className={classes.paragraphContainer} >
           <Typography variant='body1' paragraph>
             It’s no secret that people like to shop online.
           </Typography>
@@ -150,14 +155,14 @@ const Websites = (props) => {
         </Grid>
       </Grid>
       {/*4th layout container - outreach */}
-      <Grid item container direction='row'
+      <Grid item container direction={matchesSM ? 'column' : 'row'}
         className={classes.rowContainer}
         alignItems='center'
       >
         <Grid item >
           <Grid container direction='column'>
             <Grid item>
-              <Typography variant='h4'>
+              <Typography variant='h4' align={matchesSM ? 'center': undefined}>
                 Outreach
               </Typography>
             </Grid>
@@ -166,7 +171,7 @@ const Websites = (props) => {
             </Grid>
           </Grid>
         </Grid>
-        <Grid item className={classes.paragraphContainer}>
+        <Grid item className={classes.paragraphContainer} >
           <Typography variant='body1' paragraph>
             Draw people in with a dazzling website.
             Showing off your products online is a great way to help customers
@@ -175,7 +180,7 @@ const Websites = (props) => {
         </Grid>
       </Grid>
       {/*5th layout container - seo */}
-      <Grid item container direction='row'
+      <Grid item container direction={matchesSM ? 'column' : 'row'}
         className={classes.rowContainer}
         alignItems='center'
         justify={matchesSM ? 'center' : 'flex-end'}
@@ -183,16 +188,16 @@ const Websites = (props) => {
         <Grid item>
           <Grid container direction='column' >
             <Grid item>
-              <Typography variant='h4' noWrap>
-                Search Engine Optimization
+              <Typography variant='h4' align='center'>
+                Search Engine<br/>Optimization
               </Typography>
             </Grid>
             <Grid item>
-              <img className={classes.icon} alt='search engine optimization icon' src={seoIcon} />
+              <img className={classes.icon} alt='pc monitor on podium' src={seoIcon} />
             </Grid>
           </Grid>
         </Grid>
-        <Grid item className={classes.paragraphContainer}>
+        <Grid item className={classes.paragraphContainer} >
           <Typography variant='body1' paragraph >
             How often have you ever been to the second page of Google results?
             </Typography>
