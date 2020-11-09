@@ -32,6 +32,9 @@ const useStyles = makeStyles(theme => ({
   },
   itemContainer: {
     maxWidth: '45em'
+  },
+  paragraphContainer: {
+    maxWidth: '30em',
   }
 }));
 
@@ -94,21 +97,23 @@ const Websites = (props) => {
       </Grid>
       {/*2nd layout container - analytics */}
       <Grid item container direction='row'
-        className={Array(classes.rowContainer, classes.itemContainer).join(' ')}
+        className={classes.rowContainer}
         alignItems='center'
       >
-        <Grid item container direction='column' md>
-          <Grid item>
-            <Typography variant='h4'>
-              Analytics
-            </Typography>
-          </Grid>
-          <Grid item>
-            <img className={classes.icon} alt='analytics icon' src={analyticsIcon} style={{ marginLeft: '-3em' }} />
+        <Grid item >
+          <Grid container direction='column'>
+            <Grid item>
+              <Typography variant='h4' gutterBottom>
+                Analytics
+              </Typography>
+            </Grid>
+            <Grid item>
+              <img className={classes.icon} alt='graph with magnifying glass' src={analyticsIcon} style={{ marginLeft: '-2.75em' }} />
+            </Grid>
           </Grid>
         </Grid>
-        <Grid item md textAlign='center'>
-          <Typography variant='body1' paragraph >
+        <Grid item>
+          <Typography variant='body1' paragraph className={classes.paragraphContainer}>
             Knowledge is power, and data is 21st Century gold.
             Analyzing this data can reveal hidden patterns and trends in your business,
             empowering you to make smarter decisions with measurable effects.
@@ -117,24 +122,27 @@ const Websites = (props) => {
       </Grid>
       {/*3rd layout container - e-commerce */}
       <Grid item container direction='row'
-        className={Array(classes.rowContainer, classes.itemContainer).join(' ')}
+        className={classes.rowContainer}
         justify={matchesSM ? 'center' : 'flex-end'}
+        alignItems='center'
       >
-        <Grid item container direction='column' md>
-          <Grid item>
-            <Typography variant='h4'>
-              E-Commerce
-            </Typography>
-          </Grid>
-          <Grid item>
-            <img className={classes.icon} alt='ecommerce icon' src={ecommerceIcon} />
+        <Grid item>
+          <Grid container direction='column'>
+            <Grid item>
+              <Typography variant='h4'>
+                E-Commerce
+              </Typography>
+            </Grid>
+            <Grid item>
+              <img className={classes.icon} alt='ecommerce icon' src={ecommerceIcon} />
+            </Grid>
           </Grid>
         </Grid>
-        <Grid item md >
-          <Typography variant='body1' paragraph >
+        <Grid item>
+          <Typography variant='body1' paragraph className={classes.paragraphContainer}>
             It’s no secret that people like to shop online.
           </Typography>
-          <Typography variant='body1' paragraph >
+          <Typography variant='body1' paragraph className={classes.paragraphContainer}>
             In 2017 over $2.3 trillion was spent in e-commerce, and it’s time for your slice of that pie.
           </Typography>
         </Grid>
