@@ -14,6 +14,7 @@ import analyticsIcon from '../assets/analytics.svg';
 import ecommerceIcon from '../assets/ecommerce.svg';
 import outreachIcon from '../assets/outreach.svg';
 import seoIcon from '../assets/seo.svg';
+import CallToAction from './CallToAction';
 
 const useStyles = makeStyles(theme => ({
   heading: {
@@ -25,6 +26,7 @@ const useStyles = makeStyles(theme => ({
   rowContainer: {
     paddingLeft: '5em',
     // paddingRight: '5em',
+    paddingBottom: '10em',
     [theme.breakpoints.down('sm')]: {
       paddingLeft: '1.5em',
       paddingRight: '1.5em',
@@ -201,7 +203,10 @@ const Websites = (props) => {
             Customers don’t go there either, so we make sure your website is designed to end up on top.
           </Typography>
         </Grid>
-
+      </Grid>
+      {/*6th layout container - call to action*/}
+      <Grid item>
+        <CallToAction setValue={props.setValue}/>
       </Grid>
     </Grid>
   )
