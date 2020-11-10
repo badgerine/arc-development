@@ -89,7 +89,7 @@ const Revolution = (props) => {
         </Grid>
       </Grid>
       {/*----layout container - technology block----*/}
-      <Grid itemcontainer direction='row' className={classes.rowContainer} justify='center' alignItems='center'>
+      <Grid item container direction='row' className={classes.rowContainer} alignItems='center' justify='center'>
         <Grid item>
           <Grid container direction='column' className={classes.itemContainer}>
             <Grid item>
@@ -133,9 +133,15 @@ const Revolution = (props) => {
             </Grid>
           </Grid>
         </Grid>
-        <Grid item >
-          <Lottie options={technologyOptions} style={{ maxHeight: 260, maxWidth: 280 }}/>
+        <Grid item style={{width: '50em'}} >
+          <Lottie options={technologyOptions} />
         </Grid>
+      </Grid>
+       {/*----layout container - process title----*/}
+       <Grid item style={{ marginLeft: matchesSM ? 0 : '5em', marginTop: matchesSM ? '1em' : '2em' }}>
+        <Typography variant='h4' gutterBottom align='center'>
+          Process
+        </Typography>
       </Grid>
     </Grid>
   )
