@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 import visionIcon from '../assets/vision.svg';
+import consultationIcon from '../assets/consultationIcon.svg';
 import technologyAnimation from '../animations/technologyAnimation/data.json';
 
 const useStyles = makeStyles(theme => ({
@@ -23,6 +24,10 @@ const useStyles = makeStyles(theme => ({
   },
   itemContainer: {
     maxWidth: '35em'
+  },
+  processContainer: {
+    maxWidth: '35em',
+
   }
 }));
 
@@ -92,7 +97,7 @@ const Revolution = (props) => {
           <Grid item>
             <Typography variant='h4' gutterBottom align={matchesSM ? 'center' : undefined}>
               Technology
-              </Typography>
+            </Typography>
           </Grid>
           <Grid item>
             <Typography variant='body1' paragraph align={matchesSM ? 'center' : undefined}>
@@ -130,14 +135,49 @@ const Revolution = (props) => {
           </Grid>
         </Grid>
         <Grid item container justify='flex-end' lg>
-          <Lottie options={technologyOptions} style={{ maxWidth: '40em', margin: 0 }}/>
+          <Lottie options={technologyOptions} style={{ maxWidth: '40em', margin: 0 }} />
         </Grid>
       </Grid>
       {/*----layout container - process title----*/}
-      <Grid item style={{ marginLeft: matchesSM ? 0 : '5em', marginTop: matchesSM ? '1em' : '2em' }}>
-        <Typography variant='h4' gutterBottom align='center'>
-          Process
-        </Typography>
+      <Grid item container direction='row' className={classes.rowContainer} justify='center'>
+        <Grid item>
+          <Typography variant='h4'>
+            Process
+          </Typography>
+        </Grid>
+      </Grid>
+      {/*----layout container - consultation----*/}
+      <Grid item container direction='row'
+        className={classes.rowContainer}
+        style={{ backgroundColor: '#B3B3B3', height: '90em', }}
+      >
+        <Grid item container direction='column' className={classes.itemContainer} lg>
+          <Grid item >
+            <Typography variant='h4' style={{ color: '#000', marginTop: '5em' }}>
+              Consultation
+            </Typography>
+          </Grid>
+          <Grid item style={{ maxWidth: '20em' }}>
+            <Typography variant='body1' paragraph align={matchesSM ? 'center' : undefined} style={{ color: '#fff' }}>
+              Our process begins the moment you realize you need a piece of technology for your business.
+              Whether you already have an idea for where to start and what to do,
+              or if you just know you want to step things up,
+              our initial consultation will help you examine your business holistically to find the best solutions.
+            </Typography>
+            <Typography variant='body1' paragraph align={matchesSM ? 'center' : undefined} style={{ color: '#fff' }}>
+              Detailed notes will be taken on your requirements and constraints,
+              while taking care to identify other potential areas for consideration.
+            </Typography>
+            <Typography variant='body1' paragraph align={matchesSM ? 'center' : undefined} style={{ color: '#fff' }}>
+              Cutting-edge advancements in machine learning like object detection and
+              natural language processing allow computers to do things previously unimaginable,
+              and our expertise and intuition will help usher you into this new future of possibilities.
+            </Typography>
+          </Grid>
+        </Grid>
+        <Grid item style={{ alignSelf: 'center' }} lg>
+          <img src={consultationIcon} alt='handshake' style={{ maxWidth: '40em' }} />
+        </Grid>
       </Grid>
     </Grid>
   )
