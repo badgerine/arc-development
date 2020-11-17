@@ -127,7 +127,7 @@ const MobileApps = (props) => {
         </Grid>
         {/* mobile animation container*/}
         <Grid item md>
-          <Lottie options={defaultOptions} style={{ maxWidth: '20em' }} />
+          <Lottie options={defaultOptions} style={{ maxWidth: '20em', marginBottom: matchesMD ? '10em' : 0 }} />
         </Grid>
         {/* simultaneous platform container*/}
         <Grid item container direction='column' md>

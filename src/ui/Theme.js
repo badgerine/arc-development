@@ -73,6 +73,11 @@ export default createMuiTheme({
       textTransform: 'none',
       fontFamily: 'Roboto',
       fontWeight: 'bold',
+    },
+    caption: {
+      fontSize: '1rem',
+      fontWeight: 300,
+      color: customGrey
     }
   }
 });
