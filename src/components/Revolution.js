@@ -19,9 +19,6 @@ import technologyAnimation from '../animations/technologyAnimation/data.json';
 import CallToAction from './CallToAction';
 
 const useStyles = makeStyles(theme => ({
-  heading: {
-    maxWidth: '40em',
-  },
   rowContainer: {
     paddingLeft: '5em',
     paddingRight: '5em',
