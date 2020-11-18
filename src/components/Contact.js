@@ -9,6 +9,8 @@ import Hidden from '@material-ui/core/Hidden';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import background from '../assets/background.jpg';
+import phoneIcon from '../assets/phone.svg';
+import emailIcon from '../assets/email.svg';
 
 const useStyles = makeStyles(theme => ({
   background: {
@@ -30,7 +32,7 @@ const Contact = (props) => {
   return (
     <Grid container direction='row'>
       {/*---layout container - contact form---*/}
-      <Grid item container direction='column'
+      <Grid item container direction='column' justify='center'
         style={{ marginTop: matchesSM ? '1em' : '2em' }}
         lg={3}
       >
@@ -44,6 +46,26 @@ const Contact = (props) => {
           <Typography variant='body1' style={{ color: theme.palette.common.arcBlue }}>
             We're waiting.
           </Typography>
+        </Grid>
+        <Grid item container >
+          <Grid item>
+            <img src={phoneIcon} alt='phone' style={{marginRight: '0.5em'}} />
+          </Grid>
+          <Grid item>
+            <Typography variant='body1' style={{ color: theme.palette.common.arcBlue, fontSize: '1rem' }}>
+              (555) 555-5555
+            </Typography>
+          </Grid>
+        </Grid>
+        <Grid item container >
+          <Grid item>
+            <img src={emailIcon} alt='envelope' style={{marginRight: '0.5em', verticalAlign: 'bottom'}} />
+          </Grid>
+          <Grid item>
+            <Typography variant='body1' style={{ color: theme.palette.common.arcBlue,  fontSize: '1rem' }}>
+              maker@gmail.com
+            </Typography>
+          </Grid>
         </Grid>
       </Grid>
       {/*---layout container - call to action---*/}
