@@ -47,6 +47,22 @@ const useStyles = makeStyles(theme => ({
     '&:hover': {
       backgroundColor: theme.palette.secondary.light
     }
+  },
+  message: {
+    marginTop: '5em',
+    borderRadius: 5,
+    border: `2px solid ${theme.palette.common.arcBlue}`
+  },
+  sendButton: {
+    ...theme.typography.estimate,
+    borderRadius: 50,
+    height: 45,
+    width: 245,
+    fontSize: '1rem',
+    backgroundColor: theme.palette.common.arcOrange,
+    '&:hover': {
+      backgroundColor: theme.palette.secondary.light
+    }
   }
 }));
 
@@ -105,7 +121,7 @@ const Contact = (props) => {
         </Grid>
         {/*---contact form - capture user info and message---*/}
         <Grid item container>
-          <Grid item>
+          <Grid item style={{maxWidth: '20em'}}>
             <Grid item>
               <TextField label='Name' id='name' value={name} onChange={event => setName(event.target.value)} />
             </Grid>
@@ -117,18 +133,21 @@ const Contact = (props) => {
             </Grid>
           </Grid>
           {/*---capture user message---*/}
-          <Grid item>
+          <Grid item style={{maxWidth: '20em'}}>
             <TextField
+              InputProps={{disableUnderline: true}}
               value={message}
               id='message'
               multiline
               rows={10}
-              onChange={event => setMessage(event.target.value)} />
+              onChange={event => setMessage(event.target.value)}
+              className={classes.message}
+            />
           </Grid>
           <Grid item>
-            <Button variant='contained'>
+            <Button variant='contained'className={classes.sendButton}>
               Send Message
-              <img src={airplane} alt='airplane' />
+              <img src={airplane} alt='airplane' style={{marginLeft: '1rem'}}/>
             </Button>
           </Grid>
         </Grid>

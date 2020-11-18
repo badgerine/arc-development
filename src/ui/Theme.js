@@ -78,6 +78,25 @@ export default createMuiTheme({
       fontSize: '1rem',
       fontWeight: 300,
       color: customGrey
+    },
+  },
+  overrides: {
+    MuiInputLabel: {
+      root: {
+        color: customBlue,
+        fontSize: '1rem'
+      }
+    },
+    MuiInput: {
+      underline: {
+        '&:before': {
+          borderBottom: `2px solid ${customBlue}`
+        },
+        '&:hover:not($disabled):not($focused):not($error):before': {
+          borderBottom: `2px solid ${customBlue}`
+        }
+      }
     }
   }
+
 });
