@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Lottie from 'react-lottie';
 import { Link } from 'react-router-dom';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
@@ -21,6 +20,7 @@ const useStyles = makeStyles(theme => ({
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
     height: '60em',
+    paddingBottom: '10em'
   },
   learnButton: {
     ...theme.typography.learnButton,
@@ -82,87 +82,89 @@ const Contact = (props) => {
   return (
     <Grid container direction='row'>
       {/*---layout container - contact form---*/}
-      <Grid item container direction='column' justify='center'
-        style={{ marginTop: matchesSM ? '1em' : '2em' }}
-        lg={3}
+      <Grid item container direction='column' justify='center' alignItems='center'
+        lg={4} xl={3}
       >
-        {/*---contact form - title and intro---*/}
         <Grid item>
-          <Typography variant='h2' gutterBottom
-            align={matchesMD ? 'center' : undefined}
-            style={{ lineHeight: 1 }}
-          >
-            Contact Us
-          </Typography>
-          <Typography variant='body1' style={{ color: theme.palette.common.arcBlue }}>
-            We're waiting.
-          </Typography>
-        </Grid>
-        {/*---contact form - contact info---*/}
-        <Grid item container >
-          <Grid item>
-            <img src={phoneIcon} alt='phone' style={{ marginRight: '0.5em' }} />
-          </Grid>
-          <Grid item>
-            <Typography variant='body1' style={{ color: theme.palette.common.arcBlue, fontSize: '1rem' }}>
-              (555) 555-5555
+          <Grid container direction='column>'>
+            {/*---contact form - title and intro---*/}
+            <Grid item>
+              <Typography variant='h2' gutterBottom
+                style={{ lineHeight: 1 }}
+              >
+                Contact Us
+              </Typography>
+              <Typography variant='body1' style={{ color: theme.palette.common.arcBlue }}>
+                We're waiting.
+              </Typography>
+            </Grid>
+            {/*---contact form - contact info---*/}
+            <Grid item container style={{marginTop: '2em'}}>
+              <Grid item>
+                <img src={phoneIcon} alt='phone' style={{ marginRight: '0.5em' }} />
+              </Grid>
+              <Grid item>
+                <Typography variant='body1' style={{ color: theme.palette.common.arcBlue, fontSize: '1rem' }}>
+                  (555) 555-5555
+                </Typography>
+              </Grid>
+            </Grid>
+            <Grid item container style={{marginTop: '2em'}}>
+              <Grid item>
+                <img src={emailIcon} alt='envelope' style={{ marginRight: '0.5em', verticalAlign: 'bottom' }} />
+              </Grid>
+              <Grid item>
+                <Typography variant='body1' style={{ color: theme.palette.common.arcBlue, fontSize: '1rem' }}>
+                  maker@gmail.com
             </Typography>
-          </Grid>
-        </Grid>
-        <Grid item container >
-          <Grid item>
-            <img src={emailIcon} alt='envelope' style={{ marginRight: '0.5em', verticalAlign: 'bottom' }} />
-          </Grid>
-          <Grid item>
-            <Typography variant='body1' style={{ color: theme.palette.common.arcBlue, fontSize: '1rem' }}>
-              maker@gmail.com
-            </Typography>
-          </Grid>
-        </Grid>
-        {/*---contact form - capture user info and message---*/}
-        <Grid item container>
-          <Grid item style={{maxWidth: '20em'}}>
-            <Grid item>
-              <TextField label='Name' id='name' value={name} onChange={event => setName(event.target.value)} />
+              </Grid>
             </Grid>
-            <Grid item>
-              <TextField label='Email' id='email' value={email} onChange={event => setEmail(event.target.value)} />
+            {/*---contact form - capture user info and message---*/}
+            <Grid item container>
+              <Grid item style={{ maxWidth: '20em' }}>
+                <Grid item>
+                  <TextField label='Name' id='name' value={name} onChange={event => setName(event.target.value)} />
+                </Grid>
+                <Grid item>
+                  <TextField label='Email' id='email' value={email} onChange={event => setEmail(event.target.value)} />
+                </Grid>
+                <Grid item>
+                  <TextField label='Phone' id='phone' value={phone} onChange={event => setPhone(event.target.value)} />
+                </Grid>
+              </Grid>
+              {/*---capture user message---*/}
+              <Grid item style={{ maxWidth: '20em' }}>
+                <TextField
+                  InputProps={{ disableUnderline: true }}
+                  value={message}
+                  id='message'
+                  multiline
+                  rows={10}
+                  onChange={event => setMessage(event.target.value)}
+                  className={classes.message}
+                />
+              </Grid>
+              <Grid item container justify='center' style={{marginTop: '2em'}}>
+                <Button variant='contained' className={classes.sendButton}>
+                  Send Message
+                  <img src={airplane} alt='airplane' style={{ marginLeft: '1rem' }} />
+                </Button>
+              </Grid>
             </Grid>
-            <Grid item>
-              <TextField label='Phone' id='phone' value={phone} onChange={event => setPhone(event.target.value)} />
-            </Grid>
-          </Grid>
-          {/*---capture user message---*/}
-          <Grid item style={{maxWidth: '20em'}}>
-            <TextField
-              InputProps={{disableUnderline: true}}
-              value={message}
-              id='message'
-              multiline
-              rows={10}
-              onChange={event => setMessage(event.target.value)}
-              className={classes.message}
-            />
-          </Grid>
-          <Grid item>
-            <Button variant='contained'className={classes.sendButton}>
-              Send Message
-              <img src={airplane} alt='airplane' style={{marginLeft: '1rem'}}/>
-            </Button>
           </Grid>
         </Grid>
       </Grid>
       {/*---layout container - call to action---*/}
-      <Grid item container className={classes.background} alignItems='center' lg={9}>
-        <Grid item style={{ marginLeft: matchesSM ? 0 : '5em', textAlign: matchesSM ? 'center' : 'inherit' }}>
+      <Grid item container className={classes.background} alignItems='center' lg={8} xl={9}>
+        <Grid item style={{ marginLeft: matchesSM ? 0 : '3em', textAlign: matchesSM ? 'center' : 'inherit' }}>
           <Grid container direction='column'>
             <Grid item>
               <Typography variant='h2'>
                 Simple Software.<br />Revolutionay Results.
-            </Typography>
+              </Typography>
               <Typography variant='subtitle2' style={{ fontSize: '1.5rem' }}>
                 Take advantage of the 21st century.
-            </Typography>
+              </Typography>
               <Grid container item justify={matchesSM ? 'center' : undefined}>
                 <Button
                   variant='outlined'
