@@ -8,6 +8,7 @@ import Hidden from '@material-ui/core/Hidden';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import background from '../assets/background.jpg';
+import mobileBackground from '../assets/mobileBackground.jpg';
 import phoneIcon from '../assets/phone.svg';
 import emailIcon from '../assets/email.svg';
 import airplane from '../assets/send.svg';
@@ -20,14 +21,17 @@ const useStyles = makeStyles(theme => ({
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
     height: '60em',
-    paddingBottom: '10em'
+    paddingBottom: '10em',
+    [theme.breakpoints.down('md')]: {
+      backgroundImage: `url(${mobileBackground})`
+    }
   },
   learnButton: {
     ...theme.typography.learnButton,
     fontSize: '0.7rem',
     height: 35,
     // padding: 5,
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       marginBottom: '2em'
     }
   },
@@ -40,7 +44,7 @@ const useStyles = makeStyles(theme => ({
     fontSize: '1.5rem',
     marginLeft: '2em',
     marginRight: '5em',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       marginLeft: 0,
       marginRight: 0,
     },
@@ -82,16 +86,22 @@ const Contact = (props) => {
   return (
     <Grid container direction='row'>
       {/*---layout container - contact form---*/}
-      <Grid item container lg={4} xl={3} justify='center' alignItems='center'>
+      <Grid item container lg={4} xl={3} justify='center' alignItems='center'
+        style={{ marginBottom: matchesMD ? '5em' : 0, marginTop: matchesSM ? '1em' : matchesMD ? '5em' : 0 }}
+      >
         <Grid item direction='column' >
           {/*---contact form - title and intro---*/}
           <Grid item>
             <Typography variant='h2' gutterBottom
               style={{ lineHeight: 1 }}
+              align={matchesMD ? 'center' : undefined}
             >
               Contact Us
               </Typography>
-            <Typography variant='body1' style={{ color: theme.palette.common.arcBlue }}>
+            <Typography variant='body1'
+              style={{ color: theme.palette.common.arcBlue }}
+              align={matchesMD ? 'center' : undefined}
+            >
               We're waiting.
               </Typography>
           </Grid>
@@ -106,7 +116,7 @@ const Contact = (props) => {
                 </Typography>
             </Grid>
           </Grid>
-          <Grid item container style={{ marginTop: '2em' }}>
+          <Grid item container style={{ marginBottom: '2em' }}>
             <Grid item>
               <img src={emailIcon} alt='envelope' style={{ marginRight: '0.5em', verticalAlign: 'bottom' }} />
             </Grid>
@@ -118,34 +128,34 @@ const Contact = (props) => {
           </Grid>
           {/*---contact form - capture user info and message---*/}
           <Grid item container direction='column'>
+            <Grid item style={{ marginBottom: '0.5em' }}>
+              <TextField label='Name' id='name' fullWidth value={name} onChange={event => setName(event.target.value)} />
+            </Grid>
+            <Grid item style={{ marginBottom: '0.5em' }}>
+              <TextField label='Email' id='email' fullWidth value={email} onChange={event => setEmail(event.target.value)} />
+            </Grid>
+            <Grid item style={{ marginBottom: '0.5em' }}>
+              <TextField label='Phone' id='phone' fullWidth value={phone} onChange={event => setPhone(event.target.value)} />
+            </Grid>
+          </Grid>
+          {/*---capture user message---*/}
+          <Grid item >
+            <TextField
+              InputProps={{ disableUnderline: true }}
+              value={message}
+              id='message'
+              fullWidth
+              multiline
+              rows={10}
+              onChange={event => setMessage(event.target.value)}
+              className={classes.message}
+            />
+          </Grid>
+          <Grid item container direction='row' justify='flex-end' style={{ marginTop: '2em' }}>
             <Grid item>
-              <Grid item>
-                <TextField label='Name' id='name' fullWidth value={name} onChange={event => setName(event.target.value)} />
-              </Grid>
-              <Grid item>
-                <TextField label='Email' id='email' fullWidth value={email} onChange={event => setEmail(event.target.value)} />
-              </Grid>
-              <Grid item>
-                <TextField label='Phone' id='phone' fullWidth value={phone} onChange={event => setPhone(event.target.value)} />
-              </Grid>
-            </Grid>
-            {/*---capture user message---*/}
-            <Grid item >
-              <TextField
-                InputProps={{ disableUnderline: true }}
-                value={message}
-                id='message'
-                fullWidth
-                multiline
-                rows={10}
-                onChange={event => setMessage(event.target.value)}
-                className={classes.message}
-              />
-            </Grid>
-            <Grid item container justify='center' style={{ marginTop: '2em' }}>
-              <Button variant='contained' className={classes.sendButton}>
+              <Button variant='contained' className={classes.sendButton} style={{marginRight: 0}}>
                 Send Message
-                  <img src={airplane} alt='airplane' style={{ marginLeft: '1rem' }} />
+                <img src={airplane} alt='airplane' style={{ marginLeft: '1rem' }} />
               </Button>
             </Grid>
           </Grid>
@@ -153,17 +163,20 @@ const Contact = (props) => {
       </Grid>
 
       {/*---layout container - call to action---*/}
-      <Grid item container className={classes.background} alignItems='center' lg={8} xl={9}>
-        <Grid item style={{ marginLeft: matchesSM ? 0 : '3em', textAlign: matchesSM ? 'center' : 'inherit' }}>
+      <Grid item container alignItems='center' justify={matchesMD ? 'center' : undefined} lg={8} xl={9}
+        direction={matchesMD ? 'column' : 'row'}
+        className={classes.background}
+      >
+        <Grid item style={{ marginLeft: matchesMD ? 0 : '3em', textAlign: matchesMD ? 'center' : 'inherit' }}>
           <Grid container direction='column'>
             <Grid item>
-              <Typography variant='h2'>
+              <Typography variant='h2' align={matchesMD ? 'center' : undefined}>
                 Simple Software.<br />Revolutionay Results.
               </Typography>
-              <Typography variant='subtitle2' style={{ fontSize: '1.5rem' }}>
+              <Typography variant='subtitle2' align={matchesMD ? 'center' : undefined} style={{ fontSize: '1.5rem' }}>
                 Take advantage of the 21st century.
               </Typography>
-              <Grid container item justify={matchesSM ? 'center' : undefined}>
+              <Grid container item justify={matchesMD ? 'center' : undefined}>
                 <Button
                   variant='outlined'
                   className={classes.learnButton}
