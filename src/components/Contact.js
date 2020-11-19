@@ -76,12 +76,41 @@ const Contact = (props) => {
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [emailHelper, setEmailHelper] = useState('');
   const [phone, setPhone] = useState('');
+  const [phoneHelper, setPhoneHelper] = useState('');
   const [message, setMessage] = useState('');
 
   const matchesMD = useMediaQuery(theme.breakpoints.down('md'));
   const matchesSM = useMediaQuery(theme.breakpoints.down('sm'));
-  const matchesXS = useMediaQuery(theme.breakpoints.down('xs'));
+
+  const onChangeHandler = event => {
+    let valid;
+
+    switch (event.target.id) {
+      case 'email':
+        setEmail(event.target.value);
+        const emailValidator = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
+        valid = emailValidator.test(event.target.value);
+        if (!valid) {
+          setEmailHelper('Invalid email');
+        } else {
+          setEmailHelper('');
+        }
+        break;
+      case 'phone':
+        setPhone(event.target.value);
+        const phoneValidator = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+        valid = phoneValidator.test(event.target.value);
+        if (!valid) {
+          setPhoneHelper('Invalid phone number');
+        } else {
+          setPhoneHelper('');
+        }
+      default:
+        break;
+    }
+  }
 
   return (
     <Grid container direction='row'>
@@ -129,13 +158,32 @@ const Contact = (props) => {
           {/*---contact form - capture user info and message---*/}
           <Grid item container direction='column'>
             <Grid item style={{ marginBottom: '0.5em' }}>
-              <TextField label='Name' id='name' fullWidth value={name} onChange={event => setName(event.target.value)} />
+              <TextField
+                label='Name'
+                id='name'
+                fullWidth
+                value={name}
+                onChange={event => setName(event.target.value)} />
             </Grid>
             <Grid item style={{ marginBottom: '0.5em' }}>
-              <TextField label='Email' id='email' fullWidth value={email} onChange={event => setEmail(event.target.value)} />
+              <TextField
+                label='Email'
+                id='email'
+                error={emailHelper.length > 0}
+                helperText={emailHelper}
+                fullWidth
+                value={email}
+                onChange={onChangeHandler} />
             </Grid>
             <Grid item style={{ marginBottom: '0.5em' }}>
-              <TextField label='Phone' id='phone' fullWidth value={phone} onChange={event => setPhone(event.target.value)} />
+              <TextField
+                label='Phone'
+                id='phone'
+                error={phoneHelper.length > 0}
+                helperText={phoneHelper}
+                fullWidth
+                value={phone}
+                onChange={onChangeHandler} />
             </Grid>
           </Grid>
           {/*---capture user message---*/}
@@ -153,7 +201,7 @@ const Contact = (props) => {
           </Grid>
           <Grid item container direction='row' justify='flex-end' style={{ marginTop: '2em' }}>
             <Grid item>
-              <Button variant='contained' className={classes.sendButton} style={{marginRight: 0}}>
+              <Button variant='contained' className={classes.sendButton} style={{ marginRight: 0 }}>
                 Send Message
                 <img src={airplane} alt='airplane' style={{ marginLeft: '1rem' }} />
               </Button>
