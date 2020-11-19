@@ -82,78 +82,76 @@ const Contact = (props) => {
   return (
     <Grid container direction='row'>
       {/*---layout container - contact form---*/}
-      <Grid item container direction='column' justify='center' alignItems='center'
-        lg={4} xl={3}
-      >
-        <Grid item>
-          <Grid container direction='column>'>
-            {/*---contact form - title and intro---*/}
+      <Grid item container lg={4} xl={3} justify='center' alignItems='center'>
+        <Grid item direction='column' >
+          {/*---contact form - title and intro---*/}
+          <Grid item>
+            <Typography variant='h2' gutterBottom
+              style={{ lineHeight: 1 }}
+            >
+              Contact Us
+              </Typography>
+            <Typography variant='body1' style={{ color: theme.palette.common.arcBlue }}>
+              We're waiting.
+              </Typography>
+          </Grid>
+          {/*---contact form - contact info---*/}
+          <Grid item container style={{ marginTop: '2em' }}>
             <Grid item>
-              <Typography variant='h2' gutterBottom
-                style={{ lineHeight: 1 }}
-              >
-                Contact Us
-              </Typography>
-              <Typography variant='body1' style={{ color: theme.palette.common.arcBlue }}>
-                We're waiting.
-              </Typography>
+              <img src={phoneIcon} alt='phone' style={{ marginRight: '0.5em' }} />
             </Grid>
-            {/*---contact form - contact info---*/}
-            <Grid item container style={{marginTop: '2em'}}>
-              <Grid item>
-                <img src={phoneIcon} alt='phone' style={{ marginRight: '0.5em' }} />
-              </Grid>
-              <Grid item>
-                <Typography variant='body1' style={{ color: theme.palette.common.arcBlue, fontSize: '1rem' }}>
-                  (555) 555-5555
+            <Grid item>
+              <Typography variant='body1' style={{ color: theme.palette.common.arcBlue, fontSize: '1rem' }}>
+                (555) 555-5555
                 </Typography>
-              </Grid>
             </Grid>
-            <Grid item container style={{marginTop: '2em'}}>
-              <Grid item>
-                <img src={emailIcon} alt='envelope' style={{ marginRight: '0.5em', verticalAlign: 'bottom' }} />
-              </Grid>
-              <Grid item>
-                <Typography variant='body1' style={{ color: theme.palette.common.arcBlue, fontSize: '1rem' }}>
-                  maker@gmail.com
+          </Grid>
+          <Grid item container style={{ marginTop: '2em' }}>
+            <Grid item>
+              <img src={emailIcon} alt='envelope' style={{ marginRight: '0.5em', verticalAlign: 'bottom' }} />
+            </Grid>
+            <Grid item>
+              <Typography variant='body1' style={{ color: theme.palette.common.arcBlue, fontSize: '1rem' }}>
+                maker@gmail.com
             </Typography>
+            </Grid>
+          </Grid>
+          {/*---contact form - capture user info and message---*/}
+          <Grid item container direction='column'>
+            <Grid item>
+              <Grid item>
+                <TextField label='Name' id='name' fullWidth value={name} onChange={event => setName(event.target.value)} />
+              </Grid>
+              <Grid item>
+                <TextField label='Email' id='email' fullWidth value={email} onChange={event => setEmail(event.target.value)} />
+              </Grid>
+              <Grid item>
+                <TextField label='Phone' id='phone' fullWidth value={phone} onChange={event => setPhone(event.target.value)} />
               </Grid>
             </Grid>
-            {/*---contact form - capture user info and message---*/}
-            <Grid item container>
-              <Grid item style={{ maxWidth: '20em' }}>
-                <Grid item>
-                  <TextField label='Name' id='name' value={name} onChange={event => setName(event.target.value)} />
-                </Grid>
-                <Grid item>
-                  <TextField label='Email' id='email' value={email} onChange={event => setEmail(event.target.value)} />
-                </Grid>
-                <Grid item>
-                  <TextField label='Phone' id='phone' value={phone} onChange={event => setPhone(event.target.value)} />
-                </Grid>
-              </Grid>
-              {/*---capture user message---*/}
-              <Grid item style={{ maxWidth: '20em' }}>
-                <TextField
-                  InputProps={{ disableUnderline: true }}
-                  value={message}
-                  id='message'
-                  multiline
-                  rows={10}
-                  onChange={event => setMessage(event.target.value)}
-                  className={classes.message}
-                />
-              </Grid>
-              <Grid item container justify='center' style={{marginTop: '2em'}}>
-                <Button variant='contained' className={classes.sendButton}>
-                  Send Message
+            {/*---capture user message---*/}
+            <Grid item >
+              <TextField
+                InputProps={{ disableUnderline: true }}
+                value={message}
+                id='message'
+                fullWidth
+                multiline
+                rows={10}
+                onChange={event => setMessage(event.target.value)}
+                className={classes.message}
+              />
+            </Grid>
+            <Grid item container justify='center' style={{ marginTop: '2em' }}>
+              <Button variant='contained' className={classes.sendButton}>
+                Send Message
                   <img src={airplane} alt='airplane' style={{ marginLeft: '1rem' }} />
-                </Button>
-              </Grid>
+              </Button>
             </Grid>
           </Grid>
         </Grid>
       </Grid>
+
       {/*---layout container - call to action---*/}
       <Grid item container className={classes.background} alignItems='center' lg={8} xl={9}>
         <Grid item style={{ marginLeft: matchesSM ? 0 : '3em', textAlign: matchesSM ? 'center' : 'inherit' }}>
