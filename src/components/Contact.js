@@ -67,6 +67,10 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.common.arcOrange,
     '&:hover': {
       backgroundColor: theme.palette.secondary.light
+    },
+    [theme.breakpoints.down('sm')]: {
+      height: 40,
+      width: 225
     }
   }
 }));
@@ -204,9 +208,9 @@ const Contact = (props) => {
           </Grid>
           <Grid item container direction='row' justify='flex-end' style={{ marginTop: '2em' }}>
             <Button variant='contained'
-              // disabled={name.length === 0 || message.length === 0 ||
-              //   phone.length === 0 || email.length === 0 ||
-              //   phoneHelper.length !== 0 || emailHelper.length !== 0}
+              disabled={name.length === 0 || message.length === 0 ||
+                phone.length === 0 || email.length === 0 ||
+                phoneHelper.length !== 0 || emailHelper.length !== 0}
               className={classes.sendButton}
               style={{ marginRight: 0 }}
               onClick={() => setOpen(true)}
@@ -218,9 +222,12 @@ const Contact = (props) => {
         </Grid>
       </Grid>
       {/*---Dialog container---*/}
-      <Dialog open={open} onClose={() => setOpen(false)}
+      <Dialog
+        open={open}
+        onClose={() => setOpen(false)}
+        fullScreen={matchesXS ? true : false}
         style={{
-          zIndex: 1500,
+          zIndex: 1302,
         }}
         PaperProps={{
           style: {
@@ -277,7 +284,7 @@ const Contact = (props) => {
                 className={classes.message}
               />
             </Grid>
-            <Grid item container style={{ marginTop: '2em' }} alignItems='center'>
+            <Grid item container direction={matchesSM ? 'column' : 'row'} style={{ marginTop: '2em' }} alignItems='center'>
               <Grid item>
                 <Button color='primary'
                   style={{ fontWeight: 300 }}
@@ -287,6 +294,9 @@ const Contact = (props) => {
               </Grid>
               <Grid item>
                 <Button variant='contained'
+                  disabled={name.length === 0 || message.length === 0 ||
+                    phone.length === 0 || email.length === 0 ||
+                    phoneHelper.length !== 0 || emailHelper.length !== 0}
                   className={classes.sendButton}
                   style={{ marginRight: 0 }}
                   onClick={null}
