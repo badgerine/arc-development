@@ -85,6 +85,7 @@ const Contact = (props) => {
 
   const matchesMD = useMediaQuery(theme.breakpoints.down('md'));
   const matchesSM = useMediaQuery(theme.breakpoints.down('sm'));
+  const matchesXS = useMediaQuery(theme.breakpoints.down('xs'));
 
   const onChangeHandler = event => {
     let valid;
@@ -217,11 +218,24 @@ const Contact = (props) => {
         </Grid>
       </Grid>
       {/*---Dialog container---*/}
-      <Dialog open={open} onClose={() => setOpen(false)}>
+      <Dialog open={open} onClose={() => setOpen(false)}
+        style={{
+          zIndex: 1500,
+        }}
+        PaperProps={{
+          style: {
+            overflow: 'hidden',
+            paddingTop: matchesXS ? '1em' : '5em',
+            paddingBottom: matchesXS ? '1em' : '5em',
+            paddingLeft: matchesXS ? '0' : matchesSM ? '5em' : matchesMD ? '10em' : '20em',
+            paddingRight: matchesXS ? '0' : matchesSM ? '5em' : matchesMD ? '10em' : '20em'
+          }
+        }}
+      >
         <DialogContent>
           <Grid container direction='column'>
             <Grid item>
-              <Typography variant='h4' gutterBottom>Confirm Message</Typography>
+              <Typography variant='h4' gutterBottom align='center'>Confirm Message</Typography>
             </Grid>
             <Grid item style={{ marginBottom: '0.5em' }}>
               <TextField
@@ -263,19 +277,23 @@ const Contact = (props) => {
                 className={classes.message}
               />
             </Grid>
-            <Grid item container>
+            <Grid item container style={{ marginTop: '2em' }} alignItems='center'>
               <Grid item>
-                <Button color='primary' onClick={() => setOpen(false)}>Cancel</Button>
+                <Button color='primary'
+                  style={{ fontWeight: 300 }}
+                  onClick={() => setOpen(false)}>
+                  Cancel
+                </Button>
               </Grid>
               <Grid item>
-              <Button variant='contained'
-              className={classes.sendButton}
-              style={{ marginRight: 0 }}
-              onClick={null}
-            >
-              Send Message
+                <Button variant='contained'
+                  className={classes.sendButton}
+                  style={{ marginRight: 0 }}
+                  onClick={null}
+                >
+                  Send Message
                 <img src={airplane} alt='airplane' style={{ marginLeft: '1rem' }} />
-            </Button>
+                </Button>
               </Grid>
             </Grid>
           </Grid>
