@@ -1,6 +1,7 @@
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 const nodemailer = require('nodemailer');
+const cors = require('cors')({origin: true});
 
 const config = functions.config();
 admin.initializeApp();
@@ -25,11 +26,13 @@ let mailOptions = {
 // // https://firebase.google.com/docs/functions/write-firebase-functions
 //
 exports.sendMail = functions.https.onRequest((request, response) => {
-  transporter.sendMail(mailOptions, error => {
-    if (error) {
-      response.send(error)
-    } else {
-      response.send('Message sent successfully.')
-    }
+  cors(request, response, () =>{
+    transporter.sendMail(mailOptions, error => {
+      if (error) {
+        response.send(error)
+      } else {
+        response.send('Message sent successfully.')
+      }
+    })
   })
 });
