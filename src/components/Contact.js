@@ -141,7 +141,7 @@ const Contact = (props) => {
             </Grid>
             <Grid item>
               <Typography variant='body1' style={{ color: theme.palette.common.arcBlue, fontSize: '1rem' }}>
-                (555) 555-5555
+              <a style={{textDecoration: 'none', color: 'inherit'}} href='tel:5555555555'>(555) 555-5555</a>
                 </Typography>
             </Grid>
           </Grid>
@@ -151,7 +151,7 @@ const Contact = (props) => {
             </Grid>
             <Grid item>
               <Typography variant='body1' style={{ color: theme.palette.common.arcBlue, fontSize: '1rem' }}>
-                maker@gmail.com
+                <a style={{textDecoration: 'none', color: 'inherit'}} href='mailto:maker@gmail.com'>maker@gmail.com</a>
             </Typography>
             </Grid>
           </Grid>
@@ -201,7 +201,13 @@ const Contact = (props) => {
           </Grid>
           <Grid item container direction='row' justify='flex-end' style={{ marginTop: '2em' }}>
             <Grid item>
-              <Button variant='contained' className={classes.sendButton} style={{ marginRight: 0 }}>
+              <Button variant='contained'
+                disabled = {name.length === 0 || message.length === 0 || 
+                  phone.length === 0 || email.length === 0 ||
+                  phoneHelper.length !== 0 || emailHelper.length !== 0}
+                className={classes.sendButton}
+                style={{ marginRight: 0 }}
+              >
                 Send Message
                 <img src={airplane} alt='airplane' style={{ marginLeft: '1rem' }} />
               </Button>
