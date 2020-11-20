@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
@@ -117,6 +118,13 @@ const Contact = (props) => {
       default:
         break;
     }
+  }
+
+  const onConfirmHandler = () => {
+    axios.get('https://us-central1-material-ui-course-5c72f.cloudfunctions.net/sendMail').then(
+      res => console.log(res)).catch(
+        err => console.log(err)
+    );
   }
 
   return (
@@ -299,7 +307,7 @@ const Contact = (props) => {
                     phoneHelper.length !== 0 || emailHelper.length !== 0}
                   className={classes.sendButton}
                   style={{ marginRight: 0 }}
-                  onClick={null}
+                  onClick={onConfirmHandler}
                 >
                   Send Message
                 <img src={airplane} alt='airplane' style={{ marginLeft: '1rem' }} />
