@@ -10,6 +10,7 @@ import Hidden from '@material-ui/core/Hidden';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Snackbar from '@material-ui/core/Snackbar';
 
 import background from '../assets/background.jpg';
 import mobileBackground from '../assets/mobileBackground.jpg';
@@ -90,6 +91,7 @@ const Contact = (props) => {
   const [message, setMessage] = useState('');
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [alert, setAlert] = useState({ open: false, message: '', backgroundColor: '' })
 
   const matchesMD = useMediaQuery(theme.breakpoints.down('md'));
   const matchesSM = useMediaQuery(theme.breakpoints.down('sm'));
@@ -133,11 +135,14 @@ const Contact = (props) => {
         setEmail('');
         setPhone('');
         setMessage('');
+
+        setAlert({open: true, message: 'Message sent successfully.', backgroundColor: '#4BB543'});
         console.log(res)
       })
       .catch(
         err => {
           setLoading(false);
+          setAlert({open: true, message: 'Something went wrong, please try again.', backgroundColor: '#FF3232'})
           console.log(err)
         }
       );
@@ -338,6 +343,16 @@ const Contact = (props) => {
           </Grid>
         </DialogContent>
       </Dialog>
+      {/*---Snackbar---*/}
+      <Snackbar open={alert.open} message={alert.message} anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+        onClose={() => setAlert({ ...alert, open: false })}
+        autoHideDuration={4000}
+        ContentProps={
+          {
+            style: {
+              backgroundColor: alert.backgroundColor,
+            }
+          }} />
       {/*---layout container - call to action---*/}
       <Grid item container alignItems='center' justify={matchesMD ? 'center' : undefined} lg={8} xl={9}
         direction={matchesMD ? 'column' : 'row'}
