@@ -26,7 +26,7 @@ let mailOptions = {
 // // https://firebase.google.com/docs/functions/write-firebase-functions
 //
 exports.sendMail = functions.https.onRequest((request, response) => {
-  cors(request, response, () =>{
+  cors(request, response, () => {
     transporter.sendMail(mailOptions, error => {
       if (error) {
         response.send(error)
