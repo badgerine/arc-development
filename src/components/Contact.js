@@ -127,7 +127,12 @@ const Contact = (props) => {
 
   const onConfirmHandler = () => {
     setLoading(true);
-    axios.get('https://us-central1-material-ui-course-5c72f.cloudfunctions.net/sendMail')
+    axios.get('https://us-central1-material-ui-course-5c72f.cloudfunctions.net/sendMail', {params: {
+      name: name,
+      email: email,
+      phone: phone,
+      message: message
+    }})
       .then(res => {
         setLoading(false);
         setOpen(false);
