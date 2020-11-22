@@ -50,6 +50,11 @@ export default createMuiTheme({
       color: customBlue,
       fontWeight: 700
     },
+    h6: {
+      fontFamily: 'Raleway',
+      color: customBlue,
+      fontWeight: 500
+    },
     subtitle1: {
       fontSize: '1.25rem',
       color: customGrey,
