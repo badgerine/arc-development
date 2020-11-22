@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Lottie from 'react-lottie';
 import { cloneDeep } from 'lodash';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
@@ -316,6 +316,7 @@ const websiteQuestions = [
 const Estimate = (props) => {
   const classes = useStyles();
   const theme = useTheme();
+  const [questions, setQuestions] = useState(softwareQuestions);
 
   const defaultOptions = {
     loop: true,
@@ -325,6 +326,30 @@ const Estimate = (props) => {
       preserveAspectRatio: 'xMidYMid slice'
     }
   };
+
+  const nextQuestion = () => {
+    const newQuestions = cloneDeep(questions);
+    const currentlyActive = newQuestions.filter(question => question.active);
+    const activeIndex = currentlyActive[0].id - 1;
+    const nextIndex = activeIndex + 1;
+
+    newQuestions[activeIndex] = { ...currentlyActive[0], active: false };
+    newQuestions[nextIndex] = { ...newQuestions[nextIndex], active: true };
+
+    setQuestions(newQuestions);
+  }
+
+  const previousQuestion = () => {
+    const newQuestions = cloneDeep(questions);
+    const currentlyActive = newQuestions.filter(question => question.active);
+    const activeIndex = currentlyActive[0].id - 1;
+    const nextIndex = activeIndex - 1;
+
+    newQuestions[activeIndex] = { ...currentlyActive[0], active: false };
+    newQuestions[nextIndex] = { ...newQuestions[nextIndex], active: true };
+
+    setQuestions(newQuestions);
+  }
 
   return (
     <Grid container direction='row'>
@@ -340,7 +365,7 @@ const Estimate = (props) => {
         style={{ marginRight: '2em', marginBottom: '25em' }}
         lg
       >
-        {defaultQuestions.filter(question => question.active).map((question, index) => (
+        {questions.filter(question => question.active).map((question, index) => (
           <React.Fragment key={index}>
             <Grid item>
               <Typography variant='h2' align='center'
@@ -371,12 +396,16 @@ const Estimate = (props) => {
             </Grid>
           </React.Fragment>
         ))}
-        <Grid item container justify='space-between' style={{ width: '15em', marginTop: '3em' }}>
+        <Grid item container justify='space-between' style={{ width: '18em', marginTop: '3em' }}>
           <Grid item>
-            <img src={backArrow} alt='Previous question' />
+            <IconButton onClick={previousQuestion}>
+              <img src={backArrow} alt='Previous question' />
+            </IconButton>
           </Grid>
           <Grid item>
-            <img src={forwardArrow} alt='Next question' />
+            <IconButton onClick={nextQuestion}>
+              <img src={forwardArrow} alt='Next question' />
+            </IconButton>
           </Grid>
         </Grid>
         <Grid item>
