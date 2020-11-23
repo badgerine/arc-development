@@ -7,7 +7,8 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import Hidden from '@material-ui/core/Hidden';
+import TextField from '@material-ui/core/TextField';
+import { Dialog, DialogContent } from '@material-ui/core';
 
 
 import check from '../assets/check.svg';
@@ -53,7 +54,12 @@ const useStyles = makeStyles(theme => ({
     '&:hover': {
       backgroundColor: theme.palette.secondary.light
     }
-  }
+  },
+  message: {
+    marginTop: '5em',
+    borderRadius: 5,
+    border: `2px solid ${theme.palette.common.arcBlue}`
+  },
 }));
 
 const defaultQuestions = [
@@ -317,6 +323,13 @@ const Estimate = (props) => {
   const classes = useStyles();
   const theme = useTheme();
   const [questions, setQuestions] = useState(defaultQuestions);
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [emailHelper, setEmailHelper] = useState('');
+  const [phone, setPhone] = useState('');
+  const [phoneHelper, setPhoneHelper] = useState('');
+  const [message, setMessage] = useState('');
 
   const defaultOptions = {
     loop: true,
@@ -396,8 +409,36 @@ const Estimate = (props) => {
         break;
     }
 
-    // setQuestions(newQuestions);
   }
+
+  const onChangeHandler = event => {
+    let valid;
+
+    switch (event.target.id) {
+      case 'email':
+        setEmail(event.target.value);
+        const emailValidator = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
+        valid = emailValidator.test(event.target.value);
+        if (!valid) {
+          setEmailHelper('Invalid email');
+        } else {
+          setEmailHelper('');
+        }
+        break;
+      case 'phone':
+        setPhone(event.target.value);
+        const phoneValidator = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+        valid = phoneValidator.test(event.target.value);
+        if (!valid) {
+          setPhoneHelper('Invalid phone number');
+        } else {
+          setPhoneHelper('');
+        }
+      default:
+        break;
+    }
+  }
+
 
   return (
     <Grid container direction='row'>
@@ -465,12 +506,78 @@ const Estimate = (props) => {
           </Grid>
         </Grid>
         <Grid item>
-          <Button variant='contained' className={classes.estimateButton}>
+          <Button variant='contained' className={classes.estimateButton}
+            onClick={() => setDialogOpen(true)}>
             Get Estimate
           </Button>
         </Grid>
       </Grid>
-    </Grid>
+      <Dialog open={dialogOpen} onClose={() => setDialogOpen(false)}>
+        <Grid container justify='center'>
+          <Grid item>
+            <Typography variant='h2' align='center'>
+              Estimate
+            </Typography>
+          </Grid>
+        </Grid>
+        <DialogContent>
+          <Grid container>
+            <Grid item container direction='column'>
+              <Grid item style={{ marginBottom: '0.5em' }}>
+                <TextField
+                  label='Name'
+                  id='name'
+                  fullWidth
+                  value={name}
+                  onChange={event => setName(event.target.value)} />
+              </Grid>
+              <Grid item style={{ marginBottom: '0.5em' }}>
+                <TextField
+                  label='Email'
+                  id='email'
+                  error={emailHelper.length > 0}
+                  helperText={emailHelper}
+                  fullWidth
+                  value={email}
+                  onChange={onChangeHandler} />
+              </Grid>
+              <Grid item style={{ marginBottom: '0.5em' }}>
+                <TextField
+                  label='Phone'
+                  id='phone'
+                  error={phoneHelper.length > 0}
+                  helperText={phoneHelper}
+                  fullWidth
+                  value={phone}
+                  onChange={onChangeHandler} />
+              </Grid>
+              {/*---capture user message---*/}
+              <Grid item >
+                <TextField
+                  InputProps={{ disableUnderline: true }}
+                  value={message}
+                  id='message'
+                  fullWidth
+                  multiline
+                  rows={10}
+                  onChange={event => setMessage(event.target.value)}
+                  className={classes.message}
+                />
+              </Grid>
+              <Grid item>
+                <Typography variant='body1' paragraph>
+                  We can create this digital solution for an estimated
+                </Typography>
+                <Typography variant='body1' paragraph>
+                  Fill out your name, phone number, and email; place your request, 
+                  and we'll get back to you with detials moving forward and a final price.
+                </Typography>
+              </Grid>
+            </Grid>
+          </Grid>
+        </DialogContent>
+      </Dialog>
+    </Grid >
   )
 }
 
