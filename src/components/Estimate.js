@@ -337,6 +337,12 @@ const Estimate = (props) => {
   const [phoneHelper, setPhoneHelper] = useState('');
   const [message, setMessage] = useState('');
   const [total, setTotal] = useState(0);
+  const [service, setService] = useState([]);
+  const [platforms, setPlatforms] = useState([]);
+  const [features, setFeatures] = useState([]);
+  const [customFeatures, setCustomFeatures] = useState('');
+  const [category, setCategory] = useState('');
+  const [users, setUsers] = useState('');
 
   const defaultOptions = {
     loop: true,
@@ -404,12 +410,15 @@ const Estimate = (props) => {
     switch (newSelected.title) {
       case 'Custom Software Development':
         setQuestions(softwareQuestions);
+        setService(newSelected.title);
         break;
       case 'iOS/Android Development':
         setQuestions(softwareQuestions);
+        setService(newSelected.title);
         break;
       case 'Website Development':
         setQuestions(websiteQuestions);
+        setService(newSelected.title);
         break;
       default:
         setQuestions(newQuestions);
@@ -550,7 +559,7 @@ const Estimate = (props) => {
         </Grid>
         <DialogContent>
           <Grid container>
-            <Grid item container direction='column'>
+            <Grid item container direction='column' md={7}>
               <Grid item style={{ marginBottom: '0.5em' }}>
                 <TextField
                   label='Name'
@@ -600,6 +609,42 @@ const Estimate = (props) => {
                   Please fill out your name, phone number, and email; and place your request.
                   We will get back to you with details moving forward and a final price.
                 </Typography>
+              </Grid>
+            </Grid>
+            <Grid item container direction='column' md={5}>
+              <Grid item>
+                <Grid container direction='column'>
+                  <Grid item container align='center'>
+                    <Grid item>
+                      <img src={check} alt='checkmark' />
+                    </Grid>
+                    <Grid item>
+                      <Typography variant='body1'>You want {service}</Typography>
+                    </Grid>
+                  </Grid>
+                  <Grid item container align='center'>
+                    <Grid item>
+                      <img src={check} alt='checkmark' />
+                    </Grid>
+                    <Grid item>
+                      <Typography variant='body1'>Second options check</Typography>
+                    </Grid>
+                  </Grid>
+                  <Grid item container align='center'>
+                    <Grid item>
+                      <img src={check} alt='checkmark' />
+                    </Grid>
+                    <Grid item>
+                      <Typography variant='body1'>Third options check</Typography>
+                    </Grid>
+                  </Grid>
+                </Grid>
+              </Grid>
+              <Grid item>
+                <Button variant='contained' className={classes.estimateButton}>
+                  Place request
+                  <img src={send} alt='paper airplane' style={{ marginLeft: '0.5em' }} />
+                </Button>
               </Grid>
             </Grid>
           </Grid>
