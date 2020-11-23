@@ -463,13 +463,14 @@ const Estimate = (props) => {
 
     selections.map(options => options.map(option => cost += option.cost));
     if (questions.length > 2) {
-      const usersCost = questions.filter(question => question.title === 'How many users do you expect?')
-        .map(question => question.options.filter(option => option.selected))[0][0].cost;
+      const usersInfo = questions.filter(question => question.title === 'How many users do you expect?')
+        .map(question => question.options.filter(option => option.selected))[0][0];
 
-      cost -= usersCost;
-      cost *= usersCost;
+      setUsers(usersInfo.title);
+      cost -= usersInfo.cost;
+      cost *= usersInfo.cost;
 
-      console.log(usersCost);
+      console.log(usersInfo);
     }
 
     setTotal(cost);
@@ -494,6 +495,15 @@ const Estimate = (props) => {
         .map(option => option.map(newFeature => newFeatures.push(newFeature.title)));
     }
     setFeatures(newFeatures);
+  }
+
+  const getCustomFeatures = () => {
+    if (questions.length > 2) {
+      const newCustomFeatures = questions.filter(question => question.title === 'What type of custom features do you expect to need?')
+        .map(question => question.options.filter(option => option.selected))[0][0].title;
+
+      setCustomFeatures(newCustomFeatures);
+    }
   }
 
   return (
@@ -563,7 +573,13 @@ const Estimate = (props) => {
         </Grid>
         <Grid item>
           <Button variant='contained' className={classes.estimateButton}
-            onClick={() => { setDialogOpen(true); calculateTotal(); getPlatforms(); getFeatures() }}>
+            onClick={() => {
+              setDialogOpen(true);
+              calculateTotal();
+              getPlatforms();
+              getFeatures();
+              getCustomFeatures();
+            }}>
             Get Estimate
           </Button>
         </Grid>
@@ -711,7 +727,10 @@ const Estimate = (props) => {
                       <img src={check} alt='checkmark' />
                     </Grid>
                     <Grid item>
-                      <Typography variant='body1'>Third options check</Typography>
+                      <Typography variant='body1'>
+                        The custom features will be of {customFeatures.toLowerCase()}
+                        {`, and the project will be used by about ${users} users.`}
+                      </Typography>
                     </Grid>
                   </Grid>
                 </Grid>
