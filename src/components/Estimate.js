@@ -472,9 +472,18 @@ const Estimate = (props) => {
       console.log(usersCost);
     }
 
-
-
     setTotal(cost);
+  }
+
+  const getPlatforms = () => {
+    let newPlatforms = [];
+    if (questions.length > 2) {
+      questions.filter(question => question.title === 'Which platforms do you need supported?')
+        .map(question => question.options.filter(option => option.selected))[0]
+        .map(option => newPlatforms.push(option.title));
+    }
+    setPlatforms(newPlatforms);
+    console.log(newPlatforms);
   }
 
   return (
@@ -544,12 +553,12 @@ const Estimate = (props) => {
         </Grid>
         <Grid item>
           <Button variant='contained' className={classes.estimateButton}
-            onClick={() => { setDialogOpen(true); calculateTotal() }}>
+            onClick={() => { setDialogOpen(true); calculateTotal(); getPlatforms() }}>
             Get Estimate
           </Button>
         </Grid>
       </Grid>
-      <Dialog open={dialogOpen} onClose={() => setDialogOpen(false)}>
+      <Dialog open={dialogOpen} onClose={() => setDialogOpen(false)} style={{ zIndex: 1302 }}>
         <Grid container justify='center'>
           <Grid item>
             <Typography variant='h2' align='center'>
@@ -619,7 +628,36 @@ const Estimate = (props) => {
                       <img src={check} alt='checkmark' />
                     </Grid>
                     <Grid item>
-                      <Typography variant='body1'>You want {service}</Typography>
+                      <Typography variant='body1'>
+                        You want {service}
+                        {platforms.length > 0 ?
+                          ` for ${
+                          //if only web application is selected...
+                          platforms.indexOf("Web Application") > -1 &&
+                            platforms.length === 1
+                            ? //then finish sentence here
+                            "a Web Application."
+                            : //otherwise, if web application and another platform is selected...
+                            platforms.indexOf("Web Application") > -1 &&
+                              platforms.length === 2
+                              ? //then finish the sentence here
+                              `a Web Application and an ${platforms[1]}.`
+                              : //otherwise, if only one platform is selected which isn't web application...
+                              platforms.length === 1
+                                ? //then finish the sentence here
+                                `an ${platforms[0]}`
+                                : //otherwise, if other two options are selected...
+                                platforms.length === 2
+                                  ? //then finish the sentence here
+                                  "an iOS Application and an Android Application."
+                                  : //otherwise if all three are selected...
+                                  platforms.length === 3
+                                    ? //then finish the sentence here
+                                    "a Web Application, an iOS Application, and an Android Application."
+                                    : null
+                          }`
+                          : null}
+                      </Typography>
                     </Grid>
                   </Grid>
                   <Grid item container align='center'>
