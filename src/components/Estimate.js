@@ -60,6 +60,12 @@ const useStyles = makeStyles(theme => ({
     borderRadius: 5,
     border: `2px solid ${theme.palette.common.arcBlue}`
   },
+  specialText: {
+    fontFamily: 'Raleway',
+    fontWeight: 700,
+    fontSize: '1.5rem',
+    color: theme.palette.common.arcOrange
+  }
 }));
 
 const defaultQuestions = [
@@ -330,6 +336,7 @@ const Estimate = (props) => {
   const [phone, setPhone] = useState('');
   const [phoneHelper, setPhoneHelper] = useState('');
   const [message, setMessage] = useState('');
+  const [total, setTotal] = useState(0);
 
   const defaultOptions = {
     loop: true,
@@ -439,6 +446,27 @@ const Estimate = (props) => {
     }
   }
 
+  const calculateTotal = () => {
+    let cost = 0;
+    const selections = questions
+      .map(question => question.options.filter(option => option.selected))
+      .filter(question => question.length > 0);
+
+    selections.map(options => options.map(option => cost += option.cost));
+    if (questions.length > 2) {
+      const usersCost = questions.filter(question => question.title === 'How many users do you expect?')
+        .map(question => question.options.filter(option => option.selected))[0][0].cost;
+
+      cost -= usersCost;
+      cost *= usersCost;
+
+      console.log(usersCost);
+    }
+
+
+
+    setTotal(cost);
+  }
 
   return (
     <Grid container direction='row'>
@@ -447,7 +475,7 @@ const Estimate = (props) => {
           <Typography variant='h2'>Estimate</Typography>
         </Grid>
         <Grid item style={{ marginRight: '10em', maxWidth: '50em', marginTop: '7.5em' }}>
-          <Lottie options={defaultOptions} height='100%/' width='100%' />
+          <Lottie options={defaultOptions} height='100%' width='100%' />
         </Grid>
       </Grid>
       <Grid item container direction='column' alignItems='center'
@@ -507,7 +535,7 @@ const Estimate = (props) => {
         </Grid>
         <Grid item>
           <Button variant='contained' className={classes.estimateButton}
-            onClick={() => setDialogOpen(true)}>
+            onClick={() => { setDialogOpen(true); calculateTotal() }}>
             Get Estimate
           </Button>
         </Grid>
@@ -566,11 +594,11 @@ const Estimate = (props) => {
               </Grid>
               <Grid item>
                 <Typography variant='body1' paragraph>
-                  We can create this digital solution for an estimated
+                  We can create this digital solution for an estimated <span className={classes.specialText}>${total.toFixed(2)}</span>
                 </Typography>
                 <Typography variant='body1' paragraph>
-                  Fill out your name, phone number, and email; place your request, 
-                  and we'll get back to you with detials moving forward and a final price.
+                  Please fill out your name, phone number, and email; and place your request.
+                  We will get back to you with details moving forward and a final price.
                 </Typography>
               </Grid>
             </Grid>
