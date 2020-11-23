@@ -358,7 +358,17 @@ const Estimate = (props) => {
 
   const navigationNextDisabled = () => {
     const currentlyActive = questions.filter(question => question.active);
-    return currentlyActive[0].id === questions[questions.length -1].id;
+    return currentlyActive[0].id === questions[questions.length - 1].id;
+  }
+
+  const handleSelect = (id) => {
+    const newQuestions = cloneDeep(questions);
+    const currentlyActive = newQuestions.filter(question => question.active);
+    const activeIndex = currentlyActive[0].id - 1;
+
+    const newSelected = newQuestions[activeIndex].options[id - 1];
+    newSelected.selected = !newSelected.selected;
+    setQuestions(newQuestions);
   }
 
   return (
@@ -379,7 +389,7 @@ const Estimate = (props) => {
           <React.Fragment key={index}>
             <Grid item>
               <Typography variant='h2' align='center'
-                style={{ fontWeight: 500, fontSize: '2.25rem', marginTop: '5em' }}>
+                style={{ fontWeight: 500, fontSize: '2.25rem', marginTop: '5em', lineHeight: 1.25 }}>
                 {question.title}
               </Typography>
               <Typography variant='body1' align='center' style={{ marginBottom: '2.5em' }} gutterBottom>
@@ -388,8 +398,16 @@ const Estimate = (props) => {
             </Grid>
             <Grid item container>
               {question.options.map(option => (
-                <Grid item container direction='column' md>
-                  <Grid item style={{ maxWidth: '12em' }}>
+                <Grid item container direction='column' component={Button} md
+                  onClick={() => handleSelect(option.id)}
+                  style={{
+                    display: 'grid', 
+                    textTransform: 'none', 
+                    borderRadius: 0,
+                    backgroundColor: option.selected ? theme.palette.common.arcOrange : null
+                  }}
+                >
+                  <Grid item style={{ maxWidth: '14em' }}>
                     <Typography variant='h6' align='center' style={{ marginBottom: '1em' }}>
                       {option.title}
                     </Typography>
