@@ -144,21 +144,21 @@ export default function Header(props) {
     { name: 'iOS/Android Development', link: '/mobileapps', activeValue: 1, activeIndex: 2 },
     { name: 'Website Development', link: '/websites', activeValue: 1, activeIndex: 3 }];
 
-  const { value, selectedIndex } = props;
+    const { value, selectedIndex, setValue, setSelectedIndex } = props;
   useEffect(() => {
     [...routes, ...serviceMenuOptions].forEach(route => {
       if (route.link === window.location.pathname) {
         if (value !== route.activeValue) {
-          props.setValue(route.activeValue);
+          setValue(route.activeValue);
           if (route.activeIndex && route.activeIndex !== selectedIndex) {
-            props.setSelectedIndex(route.activeIndex);
+            setSelectedIndex(route.activeIndex);
           }
         }
       } else if(window.location.pathname === '/estimate'){
-        props.setValue(5);
+        setValue(5);
       }
     })
-  }, [value, selectedIndex]);
+  }, [value, selectedIndex, setValue, setSelectedIndex, serviceMenuOptions, routes]);
 
   const handleChange = (e, newValue) => {
     props.setValue(newValue);

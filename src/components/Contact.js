@@ -242,6 +242,7 @@ const Contact = (props) => {
               InputProps={{ disableUnderline: true }}
               value={message}
               id='message'
+              placeholder='Tell us more about your project.'
               fullWidth
               multiline
               rows={10}

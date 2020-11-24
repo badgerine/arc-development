@@ -585,7 +585,7 @@ const Estimate = (props) => {
       disabled = true;
     } else if (emptySelections.length < 3
       && questions[questions.length - 1].options.filter(option => option.selected).length > 0) {
-        disabled = false;
+      disabled = false;
     }
 
     console.log(emptySelections);
@@ -734,8 +734,8 @@ const Estimate = (props) => {
               </Typography>
             </Grid>
             <Grid item container>
-              {question.options.map(option => (
-                <Grid key={option.id} item container direction='column' component={Button} md
+              {question.options.map((option, index) => (
+                <Grid key={index} item container direction='column' component={Button} md
                   onClick={() => handleSelect(option.id)}
                   style={{
                     display: 'grid',
@@ -842,6 +842,7 @@ const Estimate = (props) => {
                   InputProps={{ disableUnderline: true }}
                   value={message}
                   id='message'
+                  placeholder='Tell us more about your project.'
                   fullWidth
                   multiline
                   rows={10}
@@ -850,7 +851,10 @@ const Estimate = (props) => {
                 />
               </Grid>
               <Grid item>
-                <Typography variant='body1' align={matchesSM ? 'center' : undefined} paragraph>
+                <Typography variant='body1' paragraph
+                  align={matchesSM ? 'center' : undefined}
+                  style={{ lineHeight: 1.25 }}
+                >
                   We can create this digital solution for an estimated <span className={classes.specialText}>${total.toFixed(2)}</span>
                 </Typography>
                 <Typography variant='body1' align={matchesSM ? 'center' : undefined} paragraph>
@@ -868,8 +872,12 @@ const Estimate = (props) => {
                 </Grid>
               </Hidden>
               <Grid item>
-                <Button variant='contained' className={classes.estimateButton}
+                <Button variant='contained'
+                  className={classes.estimateButton}
                   onClick={() => sendEstimate()}
+                  disabled={name.length === 0 || message.length === 0 ||
+                    phone.length === 0 || email.length === 0 ||
+                    phoneHelper.length !== 0 || emailHelper.length !== 0}
                 >
                   {loading ? <CircularProgress /> : (
                     <React.Fragment>
