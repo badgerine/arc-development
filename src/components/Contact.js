@@ -235,7 +235,7 @@ const Contact = (props) => {
             </Grid>
           </Grid>
           {/*---capture user message---*/}
-          <Grid item >
+          <Grid item style={{width: '20em'}}>
             <TextField
               InputProps={{ disableUnderline: true }}
               value={message}
@@ -265,7 +265,7 @@ const Contact = (props) => {
       <Dialog
         open={open}
         onClose={() => setOpen(false)}
-        fullScreen={matchesXS ? true : false}
+        fullScreen={matchesSM ? true : false}
         style={{
           zIndex: 1302,
         }}
@@ -312,7 +312,7 @@ const Contact = (props) => {
                 value={phone}
                 onChange={onChangeHandler} />
             </Grid>
-            <Grid item >
+            <Grid item style={{width: matchesSM ? '100%' : '20em'}}>
               <TextField
                 InputProps={{ disableUnderline: true }}
                 value={message}

@@ -529,11 +529,11 @@ const Estimate = (props) => {
 
   const softwareSelection = (
     <Grid container direction='column'>
-      <Grid item container align='center'>
-        <Grid item>
+      <Grid item container alignItems='center' style={{marginBottom: '1.25em'}}>
+        <Grid item xs={2}>
           <img src={check} alt='checkmark' />
         </Grid>
-        <Grid item>
+        <Grid item xs={10}>
           <Typography variant='body1'>
             You want {service}
             {platforms.length > 0 ?
@@ -566,11 +566,11 @@ const Estimate = (props) => {
           </Typography>
         </Grid>
       </Grid>
-      <Grid item container align='center'>
-        <Grid item>
+      <Grid item container alignItems='center' style={{marginBottom: '1.25em'}}>
+        <Grid item xs={2}>
           <img src={check} alt='checkmark' />
         </Grid>
-        <Grid item>
+        <Grid item xs={10}>
           <Typography variant='body1'>
             {"with "}
             {/* if we have features... */}
@@ -602,11 +602,11 @@ const Estimate = (props) => {
           </Typography>
         </Grid>
       </Grid>
-      <Grid item container align='center'>
-        <Grid item>
+      <Grid item container alignItems='center'>
+        <Grid item xs={2}>
           <img src={check} alt='checkmark' />
         </Grid>
-        <Grid item>
+        <Grid item xs={10}>
           <Typography variant='body1'>
             The custom features will be of {customFeatures.toLowerCase()}
             {`, and the project will be used by about ${users} users.`}
@@ -619,10 +619,10 @@ const Estimate = (props) => {
   const websiteSelection = (
     <Grid container direction='column'>
       <Grid item container align='center'>
-        <Grid item>
+        <Grid item xs={2}>
           <img src={check} alt='checkmark' />
         </Grid>
-        <Grid item>
+        <Grid item xs={10}>
           <Typography variant='body1'>
             You want {category === 'Basic' ? 'a Basic Website.' : `an ${category} Website.`}
           </Typography>
@@ -710,7 +710,12 @@ const Estimate = (props) => {
           </Button>
         </Grid>
       </Grid>
-      <Dialog open={dialogOpen} onClose={() => setDialogOpen(false)} style={{ zIndex: 1302 }}>
+      <Dialog open={dialogOpen}
+        onClose={() => setDialogOpen(false)}
+        style={{ zIndex: 1302 }}
+        fullWidth
+        maxWidth='lg'
+      >
         <Grid container justify='center'>
           <Grid item>
             <Typography variant='h2' align='center'>
@@ -719,8 +724,8 @@ const Estimate = (props) => {
           </Grid>
         </Grid>
         <DialogContent>
-          <Grid container>
-            <Grid item container direction='column' md={7}>
+          <Grid container justify='space-around'>
+            <Grid item container direction='column' md={7} style={{maxWidth: '20em'}}>
               <Grid item style={{ marginBottom: '0.5em' }}>
                 <TextField
                   label='Name'
@@ -772,7 +777,7 @@ const Estimate = (props) => {
                 </Typography>
               </Grid>
             </Grid>
-            <Grid item container direction='column' md={5}>
+            <Grid item container direction='column' md={5} style={{maxWidth: '30em'}}>
               <Grid item>
                 {questions.length > 2 ? softwareSelection : websiteSelection}
               </Grid>
