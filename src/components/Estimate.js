@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import Lottie from 'react-lottie';
 import { cloneDeep } from 'lodash';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
@@ -526,6 +527,33 @@ const Estimate = (props) => {
     }
   }
 
+  const sendEstimate = () => {
+    axios.get('https://us-central1-material-ui-course-5c72f.cloudfunctions.net/sendMail', {
+      params: {
+        name: name,
+        email: email,
+        phone: phone,
+        message: message,
+        total: total,
+        category: category,
+        service: service,
+        platforms: platforms,
+        features: features,
+        customFeatures: customFeatures,
+        users: users
+
+      }
+    })
+      .then(res => {
+        console.log(res)
+      })
+      .catch(
+        err => {
+          console.error(err)
+        }
+      );
+  }
+
   const clearSectionInfo = () => {
     setPlatforms([]);
     setFeatures([]);
@@ -624,7 +652,7 @@ const Estimate = (props) => {
   );
 
   const websiteSelection = (
-    <Grid container direction='column' style={{marginTop: '14em'}}>
+    <Grid container direction='column' style={{ marginTop: '14em' }}>
       <Grid item container align='center'>
         <Grid item xs={2}>
           <img src={check} alt='checkmark' />
@@ -809,13 +837,15 @@ const Estimate = (props) => {
                 </Grid>
               </Hidden>
               <Grid item>
-                <Button variant='contained' className={classes.estimateButton}>
+                <Button variant='contained' className={classes.estimateButton}
+                  onClick={() => sendEstimate()}
+                >
                   Place request
                   <img src={send} alt='paper airplane' style={{ marginLeft: '0.5em' }} />
                 </Button>
               </Grid>
               <Hidden mdUp>
-                <Grid item style={{marginBottom: matchesSM ? '5em' : 0}}>
+                <Grid item style={{ marginBottom: matchesSM ? '5em' : 0 }}>
                   <Button color='primary'
                     style={{ fontWeight: 300 }} onClick={() => setDialogOpen(false)}
                   >
