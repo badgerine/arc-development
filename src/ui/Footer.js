@@ -114,7 +114,7 @@ export default (props) => {
         </Grid>
       </Hidden>
       <img className={classes.adornment} alt='black decorative slash' src={footerAdornment} />
-      <Grid container justify='flex-end' spacing='2' className={classes.socialContainer}>
+      <Grid container justify='flex-end' spacing={2} className={classes.socialContainer}>
         <Grid item component={'a'} href='http://www.facebook.com' rel='noopener noreferrer' target='_blank'>
           <img alt='facebook logo' src={facebook} className={classes.icon} />
         </Grid>

@@ -4,11 +4,9 @@ import Lottie from 'react-lottie';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Hidden from '@material-ui/core/Hidden';
-import { Grid, Typography, Button } from '@material-ui/core';
+import { Grid, Typography } from '@material-ui/core';
 import { IconButton, Icon } from '@material-ui/core';
 
-import ButtonArrow from '../ui/ButtonArrow';
-import customSoftwareIcon from '../assets/Custom_Software_Icon.svg';
 import backArrow from '../assets/backArrow.svg';
 import forwardArrow from '../assets/forwardArrow.svg';
 import lightbulb from '../assets/bulb.svg';
@@ -192,7 +190,7 @@ const CustomSoftware = (props) => {
           className={classes.itemContainer}
           style={{ marginBottom: matchesMD ? '15em' : 0 }}
         >
-          <Grid item container container direction='column' md>
+          <Grid item container direction='column' md>
             <Grid item>
               <Typography variant='h4' align={matchesSM ? 'center' : undefined}>
                 Digital Documents & Data
@@ -224,7 +222,7 @@ const CustomSoftware = (props) => {
           <Grid item md>
             <Lottie options={scaleOptions} style={{ maxHeight: 260, maxWidth: 280 }} />
           </Grid>
-          <Grid item container container direction='column' md>
+          <Grid item container direction='column' md>
             <Grid item>
               <Typography variant='h4' align={matchesSM ? 'center' : 'right'}>
                 Scale
@@ -270,7 +268,7 @@ const CustomSoftware = (props) => {
           className={classes.itemContainer}
           direction={matchesSM ? 'column' : 'row'}
           style={{ marginBottom: matchesMD ? '15em' : 0 }}>
-          <Grid item container container direction='column' md>
+          <Grid item container direction='column' md>
             <Grid item>
               <Typography variant='h4' align={matchesMD ? 'center' : undefined}>
                 Automation
@@ -299,7 +297,7 @@ const CustomSoftware = (props) => {
           <Grid item md>
             <Lottie options={uxOptions} style={{ maxHeight: 310, maxWidth: 155 }} />
           </Grid>
-          <Grid item container container direction='column' md>
+          <Grid item container direction='column' md>
             <Grid item>
               <Typography variant='h4' align={matchesMD ? 'center' : 'right'}>
                 User Experience Design

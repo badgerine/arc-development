@@ -6,7 +6,6 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { Dialog, DialogContent } from '@material-ui/core';
-import Hidden from '@material-ui/core/Hidden';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -120,6 +119,7 @@ const Contact = (props) => {
         } else {
           setPhoneHelper('');
         }
+        break;
       default:
         break;
     }
@@ -127,12 +127,14 @@ const Contact = (props) => {
 
   const onConfirmHandler = () => {
     setLoading(true);
-    axios.get('https://us-central1-material-ui-course-5c72f.cloudfunctions.net/sendMail', {params: {
-      name: name,
-      email: email,
-      phone: phone,
-      message: message
-    }})
+    axios.get('https://us-central1-material-ui-course-5c72f.cloudfunctions.net/sendMail', {
+      params: {
+        name: name,
+        email: email,
+        phone: phone,
+        message: message
+      }
+    })
       .then(res => {
         setLoading(false);
         setOpen(false);
@@ -141,13 +143,13 @@ const Contact = (props) => {
         setPhone('');
         setMessage('');
 
-        setAlert({open: true, message: 'Message sent successfully.', backgroundColor: '#4BB543'});
+        setAlert({ open: true, message: 'Message sent successfully.', backgroundColor: '#4BB543' });
         console.log(res)
       })
       .catch(
         err => {
           setLoading(false);
-          setAlert({open: true, message: 'Something went wrong, please try again.', backgroundColor: '#FF3232'})
+          setAlert({ open: true, message: 'Something went wrong, please try again.', backgroundColor: '#FF3232' })
           console.log(err)
         }
       );
@@ -235,7 +237,7 @@ const Contact = (props) => {
             </Grid>
           </Grid>
           {/*---capture user message---*/}
-          <Grid item style={{width: '20em'}}>
+          <Grid item style={{ width: '20em' }}>
             <TextField
               InputProps={{ disableUnderline: true }}
               value={message}
@@ -312,7 +314,7 @@ const Contact = (props) => {
                 value={phone}
                 onChange={onChangeHandler} />
             </Grid>
-            <Grid item style={{width: matchesSM ? '100%' : '20em'}}>
+            <Grid item style={{ width: matchesSM ? '100%' : '20em' }}>
               <TextField
                 InputProps={{ disableUnderline: true }}
                 value={message}

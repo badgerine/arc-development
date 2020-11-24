@@ -336,7 +336,6 @@ const Estimate = (props) => {
 
   const matchesMD = useMediaQuery(theme.breakpoints.down('md'));
   const matchesSM = useMediaQuery(theme.breakpoints.down('sm'));
-  const matchesXS = useMediaQuery(theme.breakpoints.down('xs'));
 
   const [questions, setQuestions] = useState(defaultQuestions);
   const [dialogOpen, setDialogOpen] = useState(false);
@@ -466,6 +465,7 @@ const Estimate = (props) => {
         } else {
           setPhoneHelper('');
         }
+        break;
       default:
         break;
     }
@@ -581,6 +581,11 @@ const Estimate = (props) => {
       if (emptySelections.length === 1) {
         disabled = false;
       }
+    } else if (questions.length === 1) {
+      disabled = true;
+    } else if (emptySelections.length < 3
+      && questions[questions.length - 1].options.filter(option => option.selected).length > 0) {
+        disabled = false;
     }
 
     console.log(emptySelections);
@@ -730,7 +735,7 @@ const Estimate = (props) => {
             </Grid>
             <Grid item container>
               {question.options.map(option => (
-                <Grid item container direction='column' component={Button} md
+                <Grid key={option.id} item container direction='column' component={Button} md
                   onClick={() => handleSelect(option.id)}
                   style={{
                     display: 'grid',
