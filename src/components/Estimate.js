@@ -11,6 +11,8 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import TextField from '@material-ui/core/TextField';
 import { Dialog, DialogContent } from '@material-ui/core';
 import Hidden from '@material-ui/core/Hidden';
+import Snackbar from '@material-ui/core/Snackbar';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 
 import check from '../assets/check.svg';
@@ -351,6 +353,9 @@ const Estimate = (props) => {
   const [customFeatures, setCustomFeatures] = useState('');
   const [category, setCategory] = useState('');
   const [users, setUsers] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [alert, setAlert] = useState({ open: false, message: '', backgroundColor: '' })
+
 
   const defaultOptions = {
     loop: true,
@@ -528,6 +533,7 @@ const Estimate = (props) => {
   }
 
   const sendEstimate = () => {
+    setLoading(true);
     axios.get('https://us-central1-material-ui-course-5c72f.cloudfunctions.net/sendMail', {
       params: {
         name: name,
@@ -545,10 +551,15 @@ const Estimate = (props) => {
       }
     })
       .then(res => {
+        setLoading(false);
+        setAlert({ open: true, message: 'Estimate submitted successfully.', backgroundColor: '#4BB543' });
+        setDialogOpen(false);
         console.log(res)
       })
       .catch(
         err => {
+          setLoading(false);
+          setAlert({ open: true, message: 'Something went wrong, please try again.', backgroundColor: '#FF3232' })
           console.error(err)
         }
       );
@@ -560,6 +571,20 @@ const Estimate = (props) => {
     setCustomFeatures('');
     setCategory('');
     setUsers('');
+  }
+
+  const estimateDisabled = () => {
+    let disabled = true;
+    const emptySelections = questions.map(question => question.options.filter(option => option.selected))
+      .filter(question => question.length === 0);
+    if (questions.length === 2) {
+      if (emptySelections.length === 1) {
+        disabled = false;
+      }
+    }
+
+    console.log(emptySelections);
+    return disabled;
   }
 
   const softwareSelection = (
@@ -746,6 +771,7 @@ const Estimate = (props) => {
         </Grid>
         <Grid item>
           <Button variant='contained' className={classes.estimateButton}
+            disabled={estimateDisabled()}
             onClick={() => {
               setDialogOpen(true);
               calculateTotal();
@@ -840,8 +866,13 @@ const Estimate = (props) => {
                 <Button variant='contained' className={classes.estimateButton}
                   onClick={() => sendEstimate()}
                 >
-                  Place request
-                  <img src={send} alt='paper airplane' style={{ marginLeft: '0.5em' }} />
+                  {loading ? <CircularProgress /> : (
+                    <React.Fragment>
+                      Place request
+                      <img src={send} alt='paper airplane' style={{ marginLeft: '0.5em' }} />
+                    </React.Fragment>
+                  )}
+
                 </Button>
               </Grid>
               <Hidden mdUp>
@@ -857,6 +888,16 @@ const Estimate = (props) => {
           </Grid>
         </DialogContent>
       </Dialog>
+      {/*---Snackbar---*/}
+      <Snackbar open={alert.open} message={alert.message} anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+        onClose={() => setAlert({ ...alert, open: false })}
+        autoHideDuration={4000}
+        ContentProps={
+          {
+            style: {
+              backgroundColor: alert.backgroundColor,
+            }
+          }} />
     </Grid >
   )
 }
